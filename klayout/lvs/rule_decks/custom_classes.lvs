@@ -1,0 +1,224 @@
+#================================================
+# --------------- CUSTOM CLASSES ----------------
+#================================================
+
+#=============== CUSTOM READER ===================
+class SubcircuitModelsReader < RBA::NetlistSpiceReaderDelegate
+  def parse_element(sup, element)
+    super
+  rescue StandardError
+    case element
+    when 'Z'
+      super("#{sup} lx=0 ly=0 dl=0", element)      
+    else
+      super
+    end
+  end
+
+  # Implements the delegate interface:
+  # take and translate the element
+  def element(circuit, ele, name, model, value, nets, params)
+    case ele
+    when 'Z'
+      error('MZI-MMI requires two nodes') if nets.size != 2
+
+      # provide a device class
+      cls = circuit.netlist.device_class_by_name(model)
+      unless cls
+        cls = RBA::DeviceClassResistor.new
+        cls.name = model
+        circuit.netlist.add(cls)
+      end
+  
+      # create a device
+      device = circuit.create_device(cls, name)
+  
+      # and configure the device
+      %w[A B].each_with_index do |t, index|
+        device.connect_terminal(t, nets[index])
+      end
+
+      # Mapping all required parameters for the MZI
+      device.set_parameter('W', (params['LX'] || 0.0))
+      device.set_parameter('L', (params['LY'] || 0.0))
+      device.set_parameter('R', (params['DL'] || 0.0))
+    else
+      # all other elements are left to the standard implementation
+      return super
+    end
+    return true
+  end
+end
+
+#=============== CUSTOM WRITER ===================
+
+class SubcircuitModelsWriter < RBA::NetlistSpiceWriterDelegate
+  def write_device(device)
+    device_class = device.device_class
+    if device_class.name.include?('fet')
+      str = "M" + device.expanded_name
+    elsif device_class.name.include?('diode')
+      str = "D" + device.expanded_name
+    elsif device_class.name.include?('npn') or device_class.name.include?('pnp')
+      str = "Q" + device.expanded_name
+    elsif device_class.name.include?('res')
+      str = "R" + device.expanded_name
+    elsif device_class.name.include?('ind') or device_class.name.include?('coil')
+      str = "L" + device.expanded_name
+    elsif device_class.name.include?('cap')
+      str = "C" + device.expanded_name
+    elsif device_class.name.include?('mzi')
+      str = "Z" + device.expanded_name
+      param_lx = "lx=" + device.parameter("W").to_s
+      param_ly = "ly=" + device.parameter("L").to_s
+      param_dl = "dl=" + device.parameter("R").to_s
+    else
+      str = "#{device.id}" + device.expanded_name
+    end
+    device_class.terminal_definitions.each do |td|
+      str += " " + net_to_string(device.net_for_terminal(td.id))
+    end
+    str += " " + device_class.name
+    if device_class.name.include?('mzi')
+      str += " " + device_class.name + " " + param_lx + " " + param_ly + " " + param_dl
+    else
+      device_class.parameter_definitions.each do |pd|
+        str += " " + pd.name + ("=%.12g" % device.parameter(pd.id))
+      end        
+    end
+    emit_line(str)
+  end      
+
+end
+
+#=============== CUSTOM DEVICE ===================
+
+class MZIExtractor < RBA::GenericDeviceExtractor
+
+  def initialize(name)
+    self.name = name
+  end
+
+  def setup
+    define_layer("MZI", "MZI Seed Layer")
+    define_layer("mzi_conn", "MZI Connect Terminal")
+    define_layer("mzi_mk","MZI parameters Marker")
+
+    register_device_class(RBA::DeviceClassResistor::new)
+  end
+
+
+  def get_connectivity(layout, layers)
+    # mzi_mk is used for parameters extraction
+    # mzi_conn is used for producing the terminals
+    mzi_mmi  = layers[0]  # Device
+    mzi_conn = layers[1]  # Connections [Ports]
+    mzi_mk   = layers[2]  # Parameters Mk
+  
+    conn = RBA::Connectivity::new
+    conn.connect(mzi_mmi, mzi_mmi)
+    conn.connect(mzi_mmi, mzi_conn)    
+    conn.connect(mzi_mmi, mzi_mk)
+
+    return conn
+  end
+
+
+  def extract_devices(layer_geometry)
+
+    # layer_geometry provides the input layers in the order they are 
+    mzi_mmi  = layer_geometry[0]
+    mzi_conn = layer_geometry[1]
+    mzi_mk   = layer_geometry[2]
+
+    mzi_mmi.each_merged do |h|      
+      mzi_polygon = RBA::Region::new(h)
+      if mzi_mk.size > 0
+        len_horizontal = []
+        len_vertical   = []
+        mzi_mk.each_merged do |len|
+          mk_polygon = RBA::Region::new(len)
+          sel_len = mk_polygon.edges.and(mzi_polygon.edges)
+          len_horizontal_val = sel_len.with_angle(0, false).length
+          len_vertical_val   = sel_len.with_angle(90, false).length
+          unless len_horizontal_val == 0
+            len_horizontal.append(len_horizontal_val/2)
+          end
+          unless len_vertical_val == 0
+            len_vertical.append(len_vertical_val/2)
+          end
+        end
+
+        ## Get length of horizontal part
+        if len_horizontal.size == 2 and len_horizontal[0]==len_horizontal[1] 
+          lx = len_horizontal[0]*1e-3
+        else 
+          lx = 0
+        end
+
+        ## Get length of vertical part
+        if len_vertical.size == 4
+          if (len_vertical[0] == len_vertical[1] and len_vertical[2] == len_vertical[3])
+            l_y1 = len_vertical[0]*1e-3
+            l_y2 = len_vertical[2]*1e-3           
+          elsif (len_vertical[0] == len_vertical[2] and len_vertical[1] == len_vertical[3]) or (
+                len_vertical[0] == len_vertical[3] and len_vertical[1] == len_vertical[2])
+            l_y1 = len_vertical[0]*1e-3
+            l_y2 = len_vertical[1]*1e-3
+          else
+            l_y1 = 0
+            l_y2 = 0
+          end
+        end
+
+        ## Get Min/Max length of vertical part
+        if l_y1 > l_y2
+          ly_max = l_y1
+          ly_min = l_y2
+        else 
+          ly_max = l_y2
+          ly_min = l_y1
+        end
+
+        ##  Get Delta length for vertical part
+        dl = 2*(ly_max - ly_min) # Delta L is defined as (Lmax - Lmin) * 2 --> 2 represents both sides 
+      else
+        lx = 0
+        ly_min = 0
+        dl = 0
+      end
+
+      device = create_device()
+
+      # provide the device parameters
+      device.set_parameter('W', (lx)     * 1e-6)
+      device.set_parameter('L', (ly_min) * 1e-6)
+      device.set_parameter('R', (dl)     * 1e-6)
+
+      # provide the device terminals
+      define_terminal(device, RBA::DeviceClassResistor::TERMINAL_A, 1, mzi_conn[0])
+      define_terminal(device, RBA::DeviceClassResistor::TERMINAL_B, 1, mzi_conn[1])
+    end
+  end
+end
+
+
+# 4 terminals resistor device extractor
+class BResistor < RBA::DeviceClassResistorWithBulk
+  def initialize
+    super
+    enable_parameter('R', false)
+    enable_parameter('W', true)
+    enable_parameter('L', true)
+  end
+end
+
+# 3 terminals resistor device extractor
+class NResistor < RBA::DeviceClassResistor
+  def initialize
+    super
+    enable_parameter('R', true)
+    enable_parameter('W', true)
+    enable_parameter('L', true)
+  end
+end

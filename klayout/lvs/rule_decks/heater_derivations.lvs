@@ -1,0 +1,22 @@
+#==============================
+# ---- HEATER DERIVATIONS -----
+#==============================
+
+logger.info('Starting HEATER DERIVATIONS')
+
+# ====================
+# --- HEATER METAL ---
+# ====================
+
+# straight_heater_metal
+straight_heater_metal_res = heater.interacting(wg).and(heater_mk)
+straight_heater_metal_con = heater.not(straight_heater_metal_res).interacting(m2.covering(via1))
+
+# ====================
+# ---- HEATER MZI ----
+# ====================
+
+# MZI device
+mzi_core = wgn.interacting(port).not(port).interacting(mzi_len_mk, 6)
+mzi_conn = port.interacting(mzi_core).not(mzi_core)
+mzi_len  = mzi_len_mk.and(mzi_core)

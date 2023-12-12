@@ -1,0 +1,20 @@
+#====================================
+# ---- METAL-HEATER CONNECTIONS -----
+#====================================
+
+
+logger.info('Starting METAL-HEATER CONNECTIONS')
+
+connect(straight_heater_metal_con, via1)
+
+
+#===============================
+# ---- MZI-MMI CONNECTIONS -----
+#===============================
+
+logger.info('Starting MZI-MMI CONNECTIONS')
+
+connect(mzi_conn, mzi_len_mk)
+# connect(mzi_core, optical_lbl)
+connect(mzi_conn, optical_lbl)
+# connect(mzi_len, optical_lbl)
