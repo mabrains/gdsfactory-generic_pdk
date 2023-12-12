@@ -53,9 +53,10 @@ This includes: (Future)
 
 At a minimum:
 
-- Python 3.10+
-- Gdsfactory 7.9.2+
-- Klayout 0.28.12+
+- python 3.10+
+- gdsfactory 7.9.2+
+- klayout 0.28.12+
+- xschem V3.1.0+
 
 <!-- TODO : Adding requirements file for required python packages -->
 
