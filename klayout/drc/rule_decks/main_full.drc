@@ -1,0 +1,453 @@
+# ========================================================================
+# SPDX-FileCopyrightText: 2023 Mabrains Company
+# Licensed under the GNU GENERAL PUBLIC License, Version 3.0 (the "License");
+# you may not use this file except in compliance with the License.
+
+#                    GNU GENERAL PUBLIC LICENSE
+#                       Version 3, 29 June 2007
+
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published
+# by the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+# 
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+# 
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <https://www.gnu.org/licenses/>.
+# SPDX-License-Identifier: GPL-3.0
+# ========================================================================
+
+#================================================================================================================
+#------------------------------ GlobalFoundries Generic PDK DRC RULE DECK ---------------------------------------
+#================================================================================================================
+require 'time'
+require 'logger'
+require 'etc'
+
+exec_start_time = Time.now
+
+logger = Logger.new($stdout)
+
+logger.formatter = proc do |_severity, datetime, _progname, msg|
+  "#{datetime}: Memory Usage (" + `pmap #{Process.pid} | tail -1`[10, 40].strip + ") : #{msg}
+"
+end
+
+#================================================
+#----------------- FILE SETUP -------------------
+#================================================
+logger.info("Starting running GenericPDK Klayout DRC runset on #{$input}")
+logger.info("Ruby Version for klayout: #{RUBY_VERSION}")
+
+if $input
+  if $topcell
+    source($input, $topcell)
+  else
+    source($input)
+  end
+end
+
+logger.info('Loading database to memory is complete.')
+
+if $report
+  logger.info("GenericPDK Klayout DRC runset output at: #{$report}")
+  report('DRC Run Report at', $report)
+else
+  layout_dir = Pathname.new(RBA::CellView.active.filename).parent.realpath
+  report_path = layout_dir.join('gf180_drc.lyrdb').to_s
+  logger.info("GenericPDK Klayout DRC runset output at default location: #{report_path}")
+  report('DRC Run Report at', report_path)
+end
+
+#================================================
+#------------------ SWITCHES --------------------
+#================================================
+logger.info('Evaluate switches.')
+
+def bool_check?(obj)
+  obj.to_s.downcase == 'true'
+end
+
+TABLE_NAME = $table_name || 'main'
+
+logger.info("table_name selected  #{TABLE_NAME}")
+
+# connectivity rules
+CONNECTIVITY_EN = bool_check?($conn_drc)
+
+conn_tables = %w[dnwell dnwell_split nwell nwell_split lvpwell
+                 lvpwell_split nat nat_split ldnmos ldnmos_split ldpmos ldpmos_split main]
+
+CONNECTIVITY_RULES = if conn_tables.include?(TABLE_NAME) && CONNECTIVITY_EN
+                       true
+                     else
+                       false
+                     end
+
+logger.info("CONNECTIVITY_RULES enabled: #{CONNECTIVITY_RULES}")
+
+logger.info("MIM Option selected: #{MIM_OPTION}")
+
+# OFFGRID
+OFFGRID = $offgrid != 'false'
+
+logger.info("Offgrid enabled:  #{OFFGRID}")
+
+# threads
+if $thr
+  threads($thr)
+else
+  thr ||= Etc.nprocessors
+  threads(thr)
+end
+
+logger.info("Number of threads to use #{$thr}")
+
+#=== PRINT DETAILS ===
+
+verbose(bool_check?($verbose))
+
+logger.info("Verbose mode: #{$verbose}")
+
+# === TILING MODE ===
+case $run_mode
+## Tiling mode is for testing purpose only [Not used in run_drc.py]
+when 'tiling'
+  tiles(500.um)
+  tile_borders(10.um)
+  logger.info('Tiling  mode is enabled.')
+
+when 'deep'
+  #=== HIER MODE ===
+  deep
+  logger.info("deep  mode is enabled for #{TABLE_NAME} table")
+else
+  #=== FLAT MODE ===
+  flat
+  logger.info("flat  mode is enabled for #{TABLE_NAME} table")
+end
+
+#================================================
+#------------- LAYERS DEFINITIONS ---------------
+#================================================
+
+logger.info("Starting layers definitions")
+
+# %include layers_def.drc
+
+#================================================
+#------------- LAYERS DERIVATIONS ---------------
+#================================================
+
+logger.info("Starting deriving base layers.")
+
+#================================================
+#------------- LAYERS CONNECTIONS ---------------
+#================================================
+
+
+#================================================
+#------------ PRE-DEFINED FUNCTIONS -------------
+#================================================
+
+# === LAYOUT EXTENT ===
+CHIP = extent.sized(0.0)
+logger.info("Total area of the design is #{CHIP.area()} um^2.")
+
+#================================================
+#----------------- MAIN RUNSET ------------------
+#================================================
+
+logger.info("Starting GenericPDK DRC rules")
+
+#================================================
+#---------------------- WG ----------------------
+#================================================ 
+
+# Rule wg.w.1: wg minimum width. is 0.2µm
+logger.info("Executing rule wg.w.1")
+wg_w_1_l1  = wg_layer.width(0.2.um, euclidian)
+wg_w_1_l1.output("wg.w.1", "wg.w.1 : wg minimum width. : 0.2µm")
+wg_w_1_l1.forget 
+
+# Rule wg.s.1: wg minimum space. is 0.2µm
+logger.info("Executing rule wg.s.1")
+wg_s_1_l1  = wg_layer.space(0.2.um, euclidian)
+wg_s_1_l1.output("wg.s.1", "wg.s.1 : wg minimum space. : 0.2µm")
+wg_s_1_l1.forget 
+
+# Rule wg.a.1: wg minimum area (µm^2). is 1.0µm²
+logger.info("Executing rule wg.a.1")
+wg_a_1_l1  = wg_layer.with_area(nil, 1.0.um)
+wg_a_1_l1.output("wg.a.1", "wg.a.1 : wg minimum area (µm^2). : 1.0µm²")
+wg_a_1_l1.forget 
+
+#================================================
+#--------------------- WGN ----------------------
+#================================================ 
+
+# Rule wgn.w.1: wgn minimum width. is 0.3µm
+logger.info("Executing rule wgn.w.1")
+wgn_w_1_l1  = wgn_layer.width(0.3.um, euclidian)
+wgn_w_1_l1.output("wgn.w.1", "wgn.w.1 : wgn minimum width. : 0.3µm")
+wgn_w_1_l1.forget 
+
+# Rule wgn.s.1: wgn minimum space. is 0.3µm
+logger.info("Executing rule wgn.s.1")
+wgn_s_1_l1  = wgn_layer.space(0.3.um, euclidian)
+wgn_s_1_l1.output("wgn.s.1", "wgn.s.1 : wgn minimum space. : 0.3µm")
+wgn_s_1_l1.forget 
+
+# Rule wgn.a.1: wgn minimum area (µm^2). is 1.5µm²
+logger.info("Executing rule wgn.a.1")
+wgn_a_1_l1  = wgn_layer.with_area(nil, 1.5.um)
+wgn_a_1_l1.output("wgn.a.1", "wgn.a.1 : wgn minimum area (µm^2). : 1.5µm²")
+wgn_a_1_l1.forget 
+
+#================================================
+#---------------------- M1 ----------------------
+#================================================ 
+
+# Rule m1.w.1: m1 minimum width. is 1µm
+logger.info("Executing rule m1.w.1")
+m1_w_1_l1  = m1_layer.width(1.um, euclidian)
+m1_w_1_l1.output("m1.w.1", "m1.w.1 : m1 minimum width. : 1µm")
+m1_w_1_l1.forget 
+
+# Rule m1.s.1: m1 minimum space. is 1µm
+logger.info("Executing rule m1.s.1")
+m1_s_1_l1  = m1_layer.space(1.um, euclidian)
+m1_s_1_l1.output("m1.s.1", "m1.s.1 : m1 minimum space. : 1µm")
+m1_s_1_l1.forget 
+
+#================================================
+#---------------------- M2 ----------------------
+#================================================ 
+
+# Rule m2.w.1: m2 minimum width. is 2µm
+logger.info("Executing rule m2.w.1")
+m2_w_1_l1  = m2_layer.width(2.um, euclidian)
+m2_w_1_l1.output("m2.w.1", "m2.w.1 : m2 minimum width. : 2µm")
+m2_w_1_l1.forget 
+
+# Rule m2.s.1: m2 minimum space. is 2µm
+logger.info("Executing rule m2.s.1")
+m2_s_1_l1  = m2_layer.space(2.um, euclidian)
+m2_s_1_l1.output("m2.s.1", "m2.s.1 : m2 minimum space. : 2µm")
+m2_s_1_l1.forget 
+
+#================================================
+#--------------------- GEOM ---------------------
+#================================================ 
+
+if OFFGRID
+logger.info("OFFGRID-ANGLES section") 
+
+  logger.info("Executing rule wafer_OFFGRID")
+  wafer_layer.ongrid(0.005).output("wafer_OFFGRID", "OFFGRID : OFFGRID vertex on wafer")
+  wafer_layer.with_angle(0 .. 45).output("wafer_angle", "ACUTE : non 45 degree angle wafer") 
+
+  logger.info("Executing rule wg_OFFGRID")
+  wg_layer.ongrid(0.005).output("wg_OFFGRID", "OFFGRID : OFFGRID vertex on wg")
+  wg_layer.with_angle(0 .. 45).output("wg_angle", "ACUTE : non 45 degree angle wg") 
+
+  logger.info("Executing rule wgclad_OFFGRID")
+  wgclad_layer.ongrid(0.005).output("wgclad_OFFGRID", "OFFGRID : OFFGRID vertex on wgclad")
+  wgclad_layer.with_angle(0 .. 45).output("wgclad_angle", "ACUTE : non 45 degree angle wgclad") 
+
+  logger.info("Executing rule slab150_OFFGRID")
+  slab150_layer.ongrid(0.005).output("slab150_OFFGRID", "OFFGRID : OFFGRID vertex on slab150")
+  slab150_layer.with_angle(0 .. 45).output("slab150_angle", "ACUTE : non 45 degree angle slab150") 
+
+  logger.info("Executing rule slab90_OFFGRID")
+  slab90_layer.ongrid(0.005).output("slab90_OFFGRID", "OFFGRID : OFFGRID vertex on slab90")
+  slab90_layer.with_angle(0 .. 45).output("slab90_angle", "ACUTE : non 45 degree angle slab90") 
+
+  logger.info("Executing rule deeptrench_OFFGRID")
+  deeptrench_layer.ongrid(0.005).output("deeptrench_OFFGRID", "OFFGRID : OFFGRID vertex on deeptrench")
+  deeptrench_layer.with_angle(0 .. 45).output("deeptrench_angle", "ACUTE : non 45 degree angle deeptrench") 
+
+  logger.info("Executing rule ge_OFFGRID")
+  ge_layer.ongrid(0.005).output("ge_OFFGRID", "OFFGRID : OFFGRID vertex on ge")
+  ge_layer.with_angle(0 .. 45).output("ge_angle", "ACUTE : non 45 degree angle ge") 
+
+  logger.info("Executing rule undercut_OFFGRID")
+  undercut_layer.ongrid(0.005).output("undercut_OFFGRID", "OFFGRID : OFFGRID vertex on undercut")
+  undercut_layer.with_angle(0 .. 45).output("undercut_angle", "ACUTE : non 45 degree angle undercut") 
+
+  logger.info("Executing rule wgn_OFFGRID")
+  wgn_layer.ongrid(0.005).output("wgn_OFFGRID", "OFFGRID : OFFGRID vertex on wgn")
+  wgn_layer.with_angle(0 .. 45).output("wgn_angle", "ACUTE : non 45 degree angle wgn") 
+
+  logger.info("Executing rule wgn_clad_OFFGRID")
+  wgn_clad_layer.ongrid(0.005).output("wgn_clad_OFFGRID", "OFFGRID : OFFGRID vertex on wgn_clad")
+  wgn_clad_layer.with_angle(0 .. 45).output("wgn_clad_angle", "ACUTE : non 45 degree angle wgn_clad") 
+
+  logger.info("Executing rule n_OFFGRID")
+  n_layer.ongrid(0.005).output("n_OFFGRID", "OFFGRID : OFFGRID vertex on n")
+  n_layer.with_angle(0 .. 45).output("n_angle", "ACUTE : non 45 degree angle n") 
+
+  logger.info("Executing rule np_OFFGRID")
+  np_layer.ongrid(0.005).output("np_OFFGRID", "OFFGRID : OFFGRID vertex on np")
+  np_layer.with_angle(0 .. 45).output("np_angle", "ACUTE : non 45 degree angle np") 
+
+  logger.info("Executing rule npp_OFFGRID")
+  npp_layer.ongrid(0.005).output("npp_OFFGRID", "OFFGRID : OFFGRID vertex on npp")
+  npp_layer.with_angle(0 .. 45).output("npp_angle", "ACUTE : non 45 degree angle npp") 
+
+  logger.info("Executing rule p_OFFGRID")
+  p_layer.ongrid(0.005).output("p_OFFGRID", "OFFGRID : OFFGRID vertex on p")
+  p_layer.with_angle(0 .. 45).output("p_angle", "ACUTE : non 45 degree angle p") 
+
+  logger.info("Executing rule pp_OFFGRID")
+  pp_layer.ongrid(0.005).output("pp_OFFGRID", "OFFGRID : OFFGRID vertex on pp")
+  pp_layer.with_angle(0 .. 45).output("pp_angle", "ACUTE : non 45 degree angle pp") 
+
+  logger.info("Executing rule ppp_OFFGRID")
+  ppp_layer.ongrid(0.005).output("ppp_OFFGRID", "OFFGRID : OFFGRID vertex on ppp")
+  ppp_layer.with_angle(0 .. 45).output("ppp_angle", "ACUTE : non 45 degree angle ppp") 
+
+  logger.info("Executing rule gen_OFFGRID")
+  gen_layer.ongrid(0.005).output("gen_OFFGRID", "OFFGRID : OFFGRID vertex on gen")
+  gen_layer.with_angle(0 .. 45).output("gen_angle", "ACUTE : non 45 degree angle gen") 
+
+  logger.info("Executing rule gep_OFFGRID")
+  gep_layer.ongrid(0.005).output("gep_OFFGRID", "OFFGRID : OFFGRID vertex on gep")
+  gep_layer.with_angle(0 .. 45).output("gep_angle", "ACUTE : non 45 degree angle gep") 
+
+  logger.info("Executing rule heater_OFFGRID")
+  heater_layer.ongrid(0.005).output("heater_OFFGRID", "OFFGRID : OFFGRID vertex on heater")
+  heater_layer.with_angle(0 .. 45).output("heater_angle", "ACUTE : non 45 degree angle heater") 
+
+  logger.info("Executing rule heater_mk_OFFGRID")
+  heater_mk_layer.ongrid(0.005).output("heater_mk_OFFGRID", "OFFGRID : OFFGRID vertex on heater_mk")
+  heater_mk_layer.with_angle(0 .. 45).output("heater_mk_angle", "ACUTE : non 45 degree angle heater_mk") 
+
+  logger.info("Executing rule m1_OFFGRID")
+  m1_layer.ongrid(0.005).output("m1_OFFGRID", "OFFGRID : OFFGRID vertex on m1")
+  m1_layer.with_angle(0 .. 45).output("m1_angle", "ACUTE : non 45 degree angle m1") 
+
+  logger.info("Executing rule m2_OFFGRID")
+  m2_layer.ongrid(0.005).output("m2_OFFGRID", "OFFGRID : OFFGRID vertex on m2")
+  m2_layer.with_angle(0 .. 45).output("m2_angle", "ACUTE : non 45 degree angle m2") 
+
+  logger.info("Executing rule m3_OFFGRID")
+  m3_layer.ongrid(0.005).output("m3_OFFGRID", "OFFGRID : OFFGRID vertex on m3")
+  m3_layer.with_angle(0 .. 45).output("m3_angle", "ACUTE : non 45 degree angle m3") 
+
+  logger.info("Executing rule viac_OFFGRID")
+  viac_layer.ongrid(0.005).output("viac_OFFGRID", "OFFGRID : OFFGRID vertex on viac")
+  viac_layer.with_angle(0 .. 45).output("viac_angle", "ACUTE : non 45 degree angle viac") 
+
+  logger.info("Executing rule via1_OFFGRID")
+  via1_layer.ongrid(0.005).output("via1_OFFGRID", "OFFGRID : OFFGRID vertex on via1")
+  via1_layer.with_angle(0 .. 45).output("via1_angle", "ACUTE : non 45 degree angle via1") 
+
+  logger.info("Executing rule via2_OFFGRID")
+  via2_layer.ongrid(0.005).output("via2_OFFGRID", "OFFGRID : OFFGRID vertex on via2")
+  via2_layer.with_angle(0 .. 45).output("via2_angle", "ACUTE : non 45 degree angle via2") 
+
+  logger.info("Executing rule padopen_OFFGRID")
+  padopen_layer.ongrid(0.005).output("padopen_OFFGRID", "OFFGRID : OFFGRID vertex on padopen")
+  padopen_layer.with_angle(0 .. 45).output("padopen_angle", "ACUTE : non 45 degree angle padopen") 
+
+  logger.info("Executing rule dicing_OFFGRID")
+  dicing_layer.ongrid(0.005).output("dicing_OFFGRID", "OFFGRID : OFFGRID vertex on dicing")
+  dicing_layer.with_angle(0 .. 45).output("dicing_angle", "ACUTE : non 45 degree angle dicing") 
+
+  logger.info("Executing rule no_tile_si_OFFGRID")
+  no_tile_si_layer.ongrid(0.005).output("no_tile_si_OFFGRID", "OFFGRID : OFFGRID vertex on no_tile_si")
+  no_tile_si_layer.with_angle(0 .. 45).output("no_tile_si_angle", "ACUTE : non 45 degree angle no_tile_si") 
+
+  logger.info("Executing rule padding_OFFGRID")
+  padding_layer.ongrid(0.005).output("padding_OFFGRID", "OFFGRID : OFFGRID vertex on padding")
+  padding_layer.with_angle(0 .. 45).output("padding_angle", "ACUTE : non 45 degree angle padding") 
+
+  logger.info("Executing rule devrec_OFFGRID")
+  devrec_layer.ongrid(0.005).output("devrec_OFFGRID", "OFFGRID : OFFGRID vertex on devrec")
+  devrec_layer.with_angle(0 .. 45).output("devrec_angle", "ACUTE : non 45 degree angle devrec") 
+
+  logger.info("Executing rule floorplan_OFFGRID")
+  floorplan_layer.ongrid(0.005).output("floorplan_OFFGRID", "OFFGRID : OFFGRID vertex on floorplan")
+  floorplan_layer.with_angle(0 .. 45).output("floorplan_angle", "ACUTE : non 45 degree angle floorplan") 
+
+  logger.info("Executing rule text_OFFGRID")
+  text_layer.ongrid(0.005).output("text_OFFGRID", "OFFGRID : OFFGRID vertex on text")
+  text_layer.with_angle(0 .. 45).output("text_angle", "ACUTE : non 45 degree angle text") 
+
+  logger.info("Executing rule port_OFFGRID")
+  port_layer.ongrid(0.005).output("port_OFFGRID", "OFFGRID : OFFGRID vertex on port")
+  port_layer.with_angle(0 .. 45).output("port_angle", "ACUTE : non 45 degree angle port") 
+
+  logger.info("Executing rule porte_OFFGRID")
+  porte_layer.ongrid(0.005).output("porte_OFFGRID", "OFFGRID : OFFGRID vertex on porte")
+  porte_layer.with_angle(0 .. 45).output("porte_angle", "ACUTE : non 45 degree angle porte") 
+
+  logger.info("Executing rule porth_OFFGRID")
+  porth_layer.ongrid(0.005).output("porth_OFFGRID", "OFFGRID : OFFGRID vertex on porth")
+  porth_layer.with_angle(0 .. 45).output("porth_angle", "ACUTE : non 45 degree angle porth") 
+
+  logger.info("Executing rule show_ports_OFFGRID")
+  show_ports_layer.ongrid(0.005).output("show_ports_OFFGRID", "OFFGRID : OFFGRID vertex on show_ports")
+  show_ports_layer.with_angle(0 .. 45).output("show_ports_angle", "ACUTE : non 45 degree angle show_ports") 
+
+  logger.info("Executing rule label_optical_io_OFFGRID")
+  label_optical_io_layer.ongrid(0.005).output("label_optical_io_OFFGRID", "OFFGRID : OFFGRID vertex on label_optical_io")
+  label_optical_io_layer.with_angle(0 .. 45).output("label_optical_io_angle", "ACUTE : non 45 degree angle label_optical_io") 
+
+  logger.info("Executing rule optical_lbl_OFFGRID")
+  optical_lbl_layer.ongrid(0.005).output("optical_lbl_OFFGRID", "OFFGRID : OFFGRID vertex on optical_lbl")
+  optical_lbl_layer.with_angle(0 .. 45).output("optical_lbl_angle", "ACUTE : non 45 degree angle optical_lbl") 
+
+  logger.info("Executing rule label_settings_OFFGRID")
+  label_settings_layer.ongrid(0.005).output("label_settings_OFFGRID", "OFFGRID : OFFGRID vertex on label_settings")
+  label_settings_layer.with_angle(0 .. 45).output("label_settings_angle", "ACUTE : non 45 degree angle label_settings") 
+
+  logger.info("Executing rule te_OFFGRID")
+  te_layer.ongrid(0.005).output("te_OFFGRID", "OFFGRID : OFFGRID vertex on te")
+  te_layer.with_angle(0 .. 45).output("te_angle", "ACUTE : non 45 degree angle te") 
+
+  logger.info("Executing rule tm_OFFGRID")
+  tm_layer.ongrid(0.005).output("tm_OFFGRID", "OFFGRID : OFFGRID vertex on tm")
+  tm_layer.with_angle(0 .. 45).output("tm_angle", "ACUTE : non 45 degree angle tm") 
+
+  logger.info("Executing rule drc_marker_OFFGRID")
+  drc_marker_layer.ongrid(0.005).output("drc_marker_OFFGRID", "OFFGRID : OFFGRID vertex on drc_marker")
+  drc_marker_layer.with_angle(0 .. 45).output("drc_marker_angle", "ACUTE : non 45 degree angle drc_marker") 
+
+  logger.info("Executing rule label_instance_OFFGRID")
+  label_instance_layer.ongrid(0.005).output("label_instance_OFFGRID", "OFFGRID : OFFGRID vertex on label_instance")
+  label_instance_layer.with_angle(0 .. 45).output("label_instance_angle", "ACUTE : non 45 degree angle label_instance") 
+
+  logger.info("Executing rule error_marker_OFFGRID")
+  error_marker_layer.ongrid(0.005).output("error_marker_OFFGRID", "OFFGRID : OFFGRID vertex on error_marker")
+  error_marker_layer.with_angle(0 .. 45).output("error_marker_angle", "ACUTE : non 45 degree angle error_marker") 
+
+  logger.info("Executing rule error_path_OFFGRID")
+  error_path_layer.ongrid(0.005).output("error_path_OFFGRID", "OFFGRID : OFFGRID vertex on error_path")
+  error_path_layer.with_angle(0 .. 45).output("error_path_angle", "ACUTE : non 45 degree angle error_path") 
+
+  logger.info("Executing rule source_OFFGRID")
+  source_layer.ongrid(0.005).output("source_OFFGRID", "OFFGRID : OFFGRID vertex on source")
+  source_layer.with_angle(0 .. 45).output("source_angle", "ACUTE : non 45 degree angle source") 
+
+  logger.info("Executing rule monitor_OFFGRID")
+  monitor_layer.ongrid(0.005).output("monitor_OFFGRID", "OFFGRID : OFFGRID vertex on monitor")
+  monitor_layer.with_angle(0 .. 45).output("monitor_angle", "ACUTE : non 45 degree angle monitor") 
+
+  logger.info("Executing rule mzi_len_mk_OFFGRID")
+  mzi_len_mk_layer.ongrid(0.005).output("mzi_len_mk_OFFGRID", "OFFGRID : OFFGRID vertex on mzi_len_mk")
+  mzi_len_mk_layer.with_angle(0 .. 45).output("mzi_len_mk_angle", "ACUTE : non 45 degree angle mzi_len_mk") 
+
+end #OFFGRID-ANGLES 
+
+#================================================
+
+exec_end_time = Time.now
+run_time = exec_end_time - exec_start_time
+logger.info("#{$table_name} DRC Total Run time #{run_time} seconds")
+

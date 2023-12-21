@@ -165,3 +165,4 @@ cython_debug/
 *.lyrdb
 run_*_regr/
 pcells_run_*/
+gen_scripts/

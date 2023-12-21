@@ -1,0 +1,39 @@
+# ========================================================================
+# SPDX-FileCopyrightText: 2023 Mabrains Company
+# Licensed under the GNU GENERAL PUBLIC License, Version 3.0 (the "License");
+# you may not use this file except in compliance with the License.
+
+#                    GNU GENERAL PUBLIC LICENSE
+#                       Version 3, 29 June 2007
+
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published
+# by the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+# 
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+# 
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <https://www.gnu.org/licenses/>.
+# SPDX-License-Identifier: GPL-3.0
+# ========================================================================
+
+#================================================
+#---------------------- M2 ----------------------
+#================================================ 
+
+# Rule m2.w.1: m2 minimum width. is 2µm
+logger.info("Executing rule m2.w.1")
+m2_w_1_l1  = m2_layer.width(2.um, euclidian)
+m2_w_1_l1.output("m2.w.1", "m2.w.1 : m2 minimum width. : 2µm")
+m2_w_1_l1.forget 
+
+# Rule m2.s.1: m2 minimum space. is 2µm
+logger.info("Executing rule m2.s.1")
+m2_s_1_l1  = m2_layer.space(2.um, euclidian)
+m2_s_1_l1.output("m2.s.1", "m2.s.1 : m2 minimum space. : 2µm")
+m2_s_1_l1.forget 
+
