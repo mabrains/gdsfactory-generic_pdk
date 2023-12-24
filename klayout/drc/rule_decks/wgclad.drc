@@ -1,0 +1,75 @@
+# ========================================================================
+# SPDX-FileCopyrightText: 2023 Mabrains Company
+# Licensed under the GNU GENERAL PUBLIC License, Version 3.0 (the "License");
+# you may not use this file except in compliance with the License.
+
+#                    GNU GENERAL PUBLIC LICENSE
+#                       Version 3, 29 June 2007
+
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published
+# by the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+# 
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+# 
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <https://www.gnu.org/licenses/>.
+# SPDX-License-Identifier: GPL-3.0
+# ========================================================================
+
+#================================================
+#-------------------- WGCLAD --------------------
+#================================================ 
+
+# Rule wgclad.w.1: wgclad minimum width is 0.2µm.
+logger.info("Executing rule wgclad.w.1")
+wgclad_w_1_l1  = wgclad_layer.width(0.2.um, euclidian)
+wgclad_w_1_l1.output("wgclad.w.1", "wgclad.w.1 : wgclad minimum width : 0.2µm.")
+wgclad_w_1_l1.forget 
+
+# Rule wgclad.I.1: wgclad should overlap wg layer.
+logger.info("Executing rule wgclad.I.1")
+wgclad_i_1_l1 = wgclad_layer.not_overlapping(wg_layer)
+wgclad_i_1_l1.output("wgclad.I.1", "wgclad.I.1 : wgclad should overlap wg layer.")
+wgclad_i_1_l1.forget
+
+# Rule wgclad.I.1: wgclad minimum overlap of wg is 0.1µm.
+logger.info("Executing rule wgclad.I.1")
+wgclad_i_1_l1 = wg_layer.enclosed(wgclad_layer, 0.1.um, euclidian).polygons(0.001.um)
+wgclad_i_1_l2 = wg_layer.not_outside(wgclad_layer).not(wgclad_layer)
+wgclad_i_1_l  = wgclad_i_1_l1.join(wgclad_i_1_l2)
+wgclad_i_1_l.output("wgclad.I.1", "wgclad.I.1 : wgclad minimum overlap of wg : 0.1µm.")
+wgclad_i_1_l1.forget
+wgclad_i_1_l2.forget
+wgclad_i_1_l.forget
+
+#================================================
+#-------------------- WGCLAD --------------------
+#================================================ 
+
+# Rule wgnclad.w.1: wgnclad minimum width is 0.3µm.
+logger.info("Executing rule wgnclad.w.1")
+wgnclad_w_1_l1  = wgn_clad_layer.width(0.3.um, euclidian)
+wgnclad_w_1_l1.output("wgnclad.w.1", "wgnclad.w.1 : wgnclad minimum width : 0.3µm.")
+wgnclad_w_1_l1.forget 
+
+# Rule wgnclad.I.1: wgnclad should overlap wgn layer.
+logger.info("Executing rule wgnclad.I.1")
+wgnclad_i_1_l1 = wgn_clad_layer.not_overlapping(wgn_layer)
+wgnclad_i_1_l1.output("wgnclad.I.1", "wgnclad.I.1 : wgnclad should overlap wgn layer.")
+wgnclad_i_1_l1.forget
+
+# Rule wgnclad.I.1: wgnclad minimum overlap of wgn layer is 0.1µm.
+logger.info("Executing rule wgnclad.I.1")
+wgnclad_i_1_l1 = wgn_layer.enclosed(wgn_clad_layer, 0.1.um, euclidian).polygons(0.001.um)
+wgnclad_i_1_l2 = wgn_layer.not_outside(wgn_clad_layer).not(wgn_clad_layer)
+wgnclad_i_1_l  = wgnclad_i_1_l1.join(wgnclad_i_1_l2)
+wgnclad_i_1_l.output("wgnclad.I.1", "wgnclad.I.1 : wgnclad minimum overlap of wgn layer : 0.1µm.")
+wgnclad_i_1_l1.forget
+wgnclad_i_1_l2.forget
+wgnclad_i_1_l.forget
+

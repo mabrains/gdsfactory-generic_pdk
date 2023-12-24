@@ -1,22 +1,25 @@
-# Malformed-DRC Documentation
+Klayout-DRC
+===========
 
 Explains how to use the runset.
 
 ## Folder Structure
 
 ```text
-📁drc
- ┗ 📜README.md                  This file to document Klayout DRC.
- ┗ generic_tech_malformed.drc   Main DRC rule deck for malformed LVS devices.
- ┗ 📜run_drc.py                 Run Malformed DRC runset for selected layout.
+📁 drc
+ ┣ 📁testing                        Testing environment directory for GenericPDK DRC. 
+ ┣ 📁rule_decks                     All DRC rule decks used in GenericPDK.
+ ┣ 📜README.md                      This file to document the DRC run for GenericPDK.
+ ┗ 📜run_drc.py                     Main python script used for GenericPDK DRC.
  ```
 
 ## **Prerequisites**
-You need the following set of tools installed to be able to run DRC:
+You need the following set of tools installed to be able to run GenericPDK DRC:
 - Python 3.6+
-- KLayout 0.28.4+
+- KLayout 0.28.12+
 
-## Run Malformed-DRC Usage
+## **Usage**
+
 The `run_drc.py` script takes a gds file to run DRC rule decks with switches to select subsets of all checks.
 
 ```bash
@@ -27,7 +30,7 @@ The `run_drc.py` script takes a gds file to run DRC rule decks with switches to 
 Example:
 
 ```bash
-python3 run_drc.py --path=../testing/testcases/unit/heater_devices/layout/straight_heater_metal.gds --run_mode=deep --run_dir=malformed_drc_test
+python3 run_drc.py --path=testing/testcases/unit/wg/wg.gds --run_mode=deep --run_dir=wg_drc_results
 ```
 
 ### Options
@@ -47,6 +50,7 @@ python3 run_drc.py --path=../testing/testcases/unit/heater_devices/layout/straig
 `--run_mode=<run_mode>`              Select klayout mode Allowed modes (flat , deep, tiling). [default: deep]
 
 `--verbose`                          Detailed rule execution log for debugging.
+
 
 ### **DRC Outputs**
 
