@@ -1,61 +1,51 @@
-################################################################################################
-# Copyright 2023 GlobalFoundries PDK Authors
-#
-# Licensed under the Apache License, Version 2.0 (the "License");
+# ========================================================================
+# SPDX-FileCopyrightText: 2023 Mabrains Company
+# Licensed under the GNU GENERAL PUBLIC License, Version 3.0 (the "License");
 # you may not use this file except in compliance with the License.
-# You may obtain a copy of the License at
-#
-#     https://www.apache.org/licenses/LICENSE-2.0
-#
-# Unless required by applicable law or agreed to in writing, software
-# distributed under the License is distributed on an "AS IS" BASIS,
-# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-# See the License for the specific language governing permissions and
-# limitations under the License.
-################################################################################################
+
+#                    GNU GENERAL PUBLIC LICENSE
+#                       Version 3, 29 June 2007
+
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published
+# by the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+# 
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+# 
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <https://www.gnu.org/licenses/>.
+# SPDX-License-Identifier: GPL-3.0
+# ========================================================================
 
 """
 Run GlobalFoundries 180nm MCU DRC.
 
 Usage:
     run_drc.py (--help| -h)
-    run_drc.py (--path=<file_path>) (--variant=<combined_options>) [--verbose] [--table=<table_name>]... [--mp=<num_cores>] [--run_dir=<run_dir_path>] [--topcell=<topcell_name>] [--thr=<thr>] [--run_mode=<run_mode>] [--no_feol] [--no_beol] [--no_connectivity] [--density] [--density_only] [--antenna] [--antenna_only] [--no_offgrid] [--split_deep] [--macro_gen] [--slow_via]
+    run_drc.py (--path=<file_path>) [--table=<table_name>]... [--run_dir=<run_dir_path>] [--mp=<num_cores>] [--topcell=<topcell_name>] [--thr=<thr>] [--run_mode=<run_mode>] [--verbose] [--no_offgrid] [--macro_gen]
 
 Options:
     --help -h                           Print this help message.
     --path=<file_path>                  The input GDS file path.
-    --variant=<combined_options>        Select combined options of metal_top, mim_option, and metal_level. Allowed values (A, B, C, D, E, F).
-                                        variant=A: Select  metal_top=30K  mim_option=A  metal_level=3LM
-                                        variant=B: Select  metal_top=11K  mim_option=B  metal_level=4LM
-                                        variant=C: Select  metal_top=9K   mim_option=B  metal_level=5LM
-                                        variant=D: Select  metal_top=11K  mim_option=B  metal_level=5LM
-                                        variant=E: Select  metal_top=9K   mim_option=B  metal_level=6LM
-                                        variant=F: Select  metal_top=9K   mim_option=A  metal_level=6LM
     --topcell=<topcell_name>            Topcell name to use.
     --table=<table_name>                Table name to use to run the rule deck.
     --mp=<num_cores>                    Run the rule deck in parts in parallel to speed up the run. [default: 1]
     --run_dir=<run_dir_path>            Run directory to save all the results [default: pwd]
     --thr=<thr>                         The number of threads used in run.
     --run_mode=<run_mode>               Select klayout mode Allowed modes (flat , deep). [default: flat]
-    --no_feol                           Turn off FEOL rules from running.
-    --no_beol                           Turn off BEOL rules from running.
-    --no_connectivity                   Turn off connectivity rules.
-    --density                           Turn on Density rules.
-    --density_only                      Turn on Density rules only.
-    --antenna                           Turn on Antenna checks.
-    --antenna_only                      Turn on Antenna checks only.
-    --split_deep                        Spliting some long run rules to be run in deep mode permanently.
     --no_offgrid                        Turn off OFFGRID checking rules.
     --verbose                           Detailed rule execution log for debugging.
     --macro_gen                         Generating the full rule deck without run.
-    --slow_via                          Turn on SLOW_VIA option for MT30.8 rule.
 """
 
-
 from docopt import docopt
+import logging
 import os
 import xml.etree.ElementTree as ET
-import logging
 import klayout.db
 import glob
 from datetime import datetime
@@ -283,73 +273,10 @@ def generate_klayout_switches(arguments, layout_path):
         logging.error("Allowed klayout modes are (flat , deep) only")
         exit(1)
 
-    if arguments["--variant"] == "A":
-        switches["metal_top"] = "30K"
-        switches["mim_option"] = "A"
-        switches["metal_level"] = "3LM"
-    elif arguments["--variant"] == "B":
-        switches["metal_top"] = "11K"
-        switches["mim_option"] = "B"
-        switches["metal_level"] = "4LM"
-    elif arguments["--variant"] == "C":
-        switches["metal_top"] = "9K"
-        switches["mim_option"] = "B"
-        switches["metal_level"] = "5LM"
-    elif arguments["--variant"] == "D":
-        switches["metal_top"] = "11K"
-        switches["mim_option"] = "B"
-        switches["metal_level"] = "5LM"
-    elif arguments["--variant"] == "E":
-        switches["metal_top"] = "9K"
-        switches["mim_option"] = "B"
-        switches["metal_level"] = "6LM"
-    elif arguments["--variant"] == "F":
-        switches["metal_top"] = "9K"
-        switches["mim_option"] = "A"
-        switches["metal_level"] = "6LM"
-    else:
-        logging.error("variant switch allowed values are (A , B, C, D, E, F) only")
-        exit(1)
-
     if arguments["--verbose"]:
         switches["verbose"] = "true"
     else:
         switches["verbose"] = "false"
-
-    if arguments["--no_feol"]:
-        switches["feol"] = "false"
-    else:
-        switches["feol"] = "true"
-
-    if arguments["--no_beol"]:
-        switches["beol"] = "false"
-    else:
-        switches["beol"] = "true"
-
-    if arguments["--no_offgrid"]:
-        switches["offgrid"] = "false"
-    else:
-        switches["offgrid"] = "true"
-
-    if arguments["--no_connectivity"]:
-        switches["conn_drc"] = "false"
-    else:
-        switches["conn_drc"] = "true"
-
-    if arguments["--density"]:
-        switches["density"] = "true"
-    else:
-        switches["density"] = "false"
-
-    if arguments["--split_deep"] and arguments["--run_mode"] != "deep":
-        switches["split_deep"] = "true"
-    else:
-        switches["split_deep"] = "false"
-
-    if arguments["--slow_via"]:
-        switches["slow_via"] = "true"
-    else:
-        switches["slow_via"] = "false"
 
     switches["topcell"] = get_run_top_cell_name(arguments, layout_path)
     switches["input"] = layout_path
@@ -418,12 +345,12 @@ def check_layout_path(layout_path):
 
 def build_switches_string(sws: dict):
     """
-    build_switches_string Build swtiches string from dictionary.
+    build_switches_string Build switches string from dictionary.
 
     Parameters
     ----------
     sws : dict
-        Dictionary that holds the Antenna swithces.
+        Dictionary that holds the Antenna switches.
     """
     return " ".join(f"-rd {k}={v}" for k, v in sws.items())
 
@@ -454,29 +381,21 @@ def run_check(drc_file: str, drc_table: str, path: str, run_dir: str, sws: dict)
 
     ## Using print because of the multiprocessing
     logging.info(
-        "Running Global Foundries 180nm MCU {} checks on design {} on cell {}:".format(
+        "Running GENERIC TECH DRC {} checks on design {} on cell {}:".format(
             path, drc_table, sws["topcell"]
         )
     )
 
     layout_base_name = os.path.basename(path).split(".")[0]
     new_sws = sws.copy()
-    report_path = os.path.join(
-        run_dir, "{}_{}.lyrdb".format(layout_base_name, drc_table)
-    )
+    report_path = os.path.join(run_dir, f"{layout_base_name}_{drc_table}.lyrdb")
 
     new_sws["report"] = report_path
-
-    # Forcing deep mode for long run rules
-    if "split" in drc_table:
-        new_sws["run_mode"] = "deep"
-    else:
-        new_sws["run_mode"] = arguments["--run_mode"]
-
     sws_str = build_switches_string(new_sws)
     sws_str += f" -rd table_name={drc_table}"
 
     run_str = f"klayout -b -r {drc_file} {sws_str}"
+
     check_call(run_str, shell=True)
 
     return report_path
@@ -594,28 +513,6 @@ def run_single_processor(
         drc_file = generate_drc_run_template(rule_deck_full_path, drc_run_dir)
         return 0
 
-    ## Run Antenna if required.
-    if arguments["--antenna"] or arguments["--antenna_only"]:
-        drc_path = os.path.join(rule_deck_full_path, "rule_decks", "antenna.drc")
-        list_res_db_files.append(
-            run_check(drc_path, "antenna", layout_path, drc_run_dir, switches)
-        )
-
-        if arguments["--antenna_only"]:
-            logging.info("## Completed running Antenna checks only.")
-            exit(1)
-
-    ## Run Density if required.
-    if arguments["--density"] or arguments["--density_only"]:
-        drc_path = os.path.join(rule_deck_full_path, "rule_decks", "density.drc")
-        list_res_db_files.append(
-            run_check(drc_path, "density", layout_path, drc_run_dir, switches)
-        )
-
-        if arguments["--density_only"]:
-            logging.info("## Completed running density checks only.")
-            exit(1)
-
     ## Generate run rule deck from template.
     if not arguments["--table"]:
         drc_file = generate_drc_run_template(rule_deck_full_path, drc_run_dir)
@@ -673,8 +570,6 @@ def main(drc_run_dir: str, arguments: dict):
 
     if (
         workers_count == 1
-        or arguments["--antenna_only"]
-        or arguments["--density_only"]
     ):
         run_single_processor(
             arguments, rule_deck_full_path, layout_path, switches, drc_run_dir
@@ -712,7 +607,7 @@ if __name__ == "__main__":
     logging.basicConfig(
         level=logging.DEBUG,
         handlers=[
-            logging.FileHandler(os.path.join(drc_run_dir, "{}.log".format(now_str))),
+            logging.FileHandler(os.path.join(drc_run_dir, f"{now_str}.log")),
             logging.StreamHandler(),
         ],
         format="%(asctime)s | %(levelname)-7s | %(message)s",

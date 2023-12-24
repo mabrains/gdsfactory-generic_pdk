@@ -100,9 +100,9 @@ logger.info("OFFGRID-ANGLES section")
   gep_layer.ongrid(0.005).output("gep_OFFGRID", "OFFGRID : OFFGRID vertex on gep")
   gep_layer.with_angle(0 .. 45).output("gep_angle", "ACUTE : non 45 degree angle gep") 
 
-  logger.info("Executing rule heater_OFFGRID")
-  heater_layer.ongrid(0.005).output("heater_OFFGRID", "OFFGRID : OFFGRID vertex on heater")
-  heater_layer.with_angle(0 .. 45).output("heater_angle", "ACUTE : non 45 degree angle heater") 
+  logger.info("Executing rule mh_OFFGRID")
+  mh_layer.ongrid(0.005).output("mh_OFFGRID", "OFFGRID : OFFGRID vertex on mh")
+  mh_layer.with_angle(0 .. 45).output("mh_angle", "ACUTE : non 45 degree angle mh") 
 
   logger.info("Executing rule heater_mk_OFFGRID")
   heater_mk_layer.ongrid(0.005).output("heater_mk_OFFGRID", "OFFGRID : OFFGRID vertex on heater_mk")

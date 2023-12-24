@@ -1,6 +1,6 @@
-# Globalfoundries 180nm MCU DRC Testing
+# GenericPDK DRC Testing
 
-Explains how to test GF180nm DRC rule decks.
+Explains how to test GenericPDK DRC rule decks.
 
 ## Folder Structure
 
@@ -14,11 +14,11 @@ Explains how to test GF180nm DRC rule decks.
 ## **Prerequisites**
 You need the following set of tools installed to be able to run the regression:
 - Python 3.6+
-- KLayout 0.28.4+
+- KLayout 0.28.8+
 
 We have tested this using the following setup:
 - Python 3.9.12
-- KLayout 0.28.5
+- KLayout 0.28.12
 
 ## **Usage**
 

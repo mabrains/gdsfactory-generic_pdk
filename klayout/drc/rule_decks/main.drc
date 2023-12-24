@@ -90,8 +90,6 @@ CONNECTIVITY_RULES = if conn_tables.include?(TABLE_NAME) && CONNECTIVITY_EN
 
 logger.info("CONNECTIVITY_RULES enabled: #{CONNECTIVITY_RULES}")
 
-logger.info("MIM Option selected: #{MIM_OPTION}")
-
 # OFFGRID
 OFFGRID = $offgrid != 'false'
 

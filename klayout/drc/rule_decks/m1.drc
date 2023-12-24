@@ -25,15 +25,28 @@
 #---------------------- M1 ----------------------
 #================================================ 
 
-# Rule m1.w.1: m1 minimum width. is 1µm
+# Rule m1.w.1: m1 minimum width is 0.3µm.
 logger.info("Executing rule m1.w.1")
-m1_w_1_l1  = m1_layer.width(1.um, euclidian)
-m1_w_1_l1.output("m1.w.1", "m1.w.1 : m1 minimum width. : 1µm")
+m1_w_1_l1  = m1_layer.width(0.3.um, euclidian)
+m1_w_1_l1.output("m1.w.1", "m1.w.1 : m1 minimum width : 0.3µm.")
 m1_w_1_l1.forget 
 
-# Rule m1.s.1: m1 minimum space. is 1µm
+# Rule m1.s.1: m1 minimum space is 0.3µm.
 logger.info("Executing rule m1.s.1")
-m1_s_1_l1  = m1_layer.space(1.um, euclidian)
-m1_s_1_l1.output("m1.s.1", "m1.s.1 : m1 minimum space. : 1µm")
+m1_s_1_l1  = m1_layer.space(0.3.um, euclidian)
+m1_s_1_l1.output("m1.s.1", "m1.s.1 : m1 minimum space : 0.3µm.")
 m1_s_1_l1.forget 
+
+wide_m1 = m1_layer.not_interacting(m1_layer.edges.with_length(nil, 10.um))
+# Rule m1.s.2: Space to wide metal1 (length & width > 10um) is 0.4µm.
+logger.info("Executing rule m1.s.2")
+m1_s_2_l1  = m1_layer.separation(wide_m1, 0.4.um, euclidian)
+m1_s_2_l1.output("m1.s.2", "m1.s.2 : Space to wide metal1 (length & width > 10um) : 0.4µm.")
+m1_s_2_l1.forget 
+
+# Rule m1.A.1: m1 minimum area is 0.1µm².
+logger.info("Executing rule m1.A.1")
+m1_a_1_l1  = m1_layer.with_area(nil, 0.1.um)
+m1_a_1_l1.output("m1.A.1", "m1.A.1 : m1 minimum area : 0.1µm².")
+m1_a_1_l1.forget 
 
