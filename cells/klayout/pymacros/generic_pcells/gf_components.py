@@ -29,12 +29,14 @@ from typing import Optional
 # Get methods of the gf.compoenents module
 compoenents_module = gf.components
 methods = inspect.getmembers(gf.components)
+# gf.components.add_fiducials()
 
 # Filter out only methods
 pcells = [method for method in methods if inspect.isfunction(method[1])]
 
 pcell_params = {}
 pcell_methods = {}
+
 # iterate on methods to get each method parameters
 for pcell in pcells:
 
@@ -54,3 +56,17 @@ for pcell in pcells:
     pcell_params[pcell_fn_name] = {}
     pcell_params[pcell_fn_name]["parameter_names"] = parameter_names
     pcell_params[pcell_fn_name]["parameters"] = parameters
+
+klayout_types = {
+    float : pya.PCellDeclarationHelper.TypeDouble,
+    int: pya.PCellDeclarationHelper.TypeInt,
+    tuple: pya.PCellDeclarationHelper.TypeList,
+    str : pya.PCellDeclarationHelper.TypeString,
+    bool : pya.PCellDeclarationHelper.TypeBoolean,
+    "float" : pya.PCellDeclarationHelper.TypeDouble,
+    "int": pya.PCellDeclarationHelper.TypeInt,
+    "tuple": pya.PCellDeclarationHelper.TypeList,
+    "str" : pya.PCellDeclarationHelper.TypeString,
+    "bool" : pya.PCellDeclarationHelper.TypeBoolean,
+    "component" : pya.PCellDeclarationHelper.TypeCallback,
+}
