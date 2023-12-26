@@ -23,8 +23,8 @@
 
 import gdsfactory as gf
 import pya
-from .gf_components import pcell_methods, pcell_params,klayout_types
-from .gf_layers_def import LAYER
+from generic_pcells.gf_components import pcell_methods, pcell_params,klayout_types,layers,not_lay,port_types,params_with_kwargs
+from generic_pcells.gf_layers_def import LAYER
 import numpy as np
 from flayout.pcell import copy_tree
 
@@ -45,19 +45,19 @@ class pcell_generator(pya.PCellDeclarationHelper):
         params = pcell_params[self.gf_component]["parameter_names"]
         
         # set parameters names and values as keys and values
-        self.param_keys = params
+        self.param_keys = []
         self.param_values = []
 
-        # define used variables
-        layers = LAYER.keys() # layers list
-        not_lay = ["layers"] # parameter with layer string but not layer parameter
-        port_types = ["electrical","optical"] # ports types list
-
+        self.set_params(params,self.gf_component)
+    
+    def set_params(self,params,component,suffix=""):
+        
+        self.param_keys += params
         # for each parameter 
         for param in params:
             
             # get parameter value string from function definition
-            param_val = pcell_params[self.gf_component]["parameters"][param]
+            param_val = pcell_params[component]["parameters"][param]
 
             # get parameter default value
             param_default = param_val.default if param_val.default is not None else str(param_val.default)
@@ -77,24 +77,25 @@ class pcell_generator(pya.PCellDeclarationHelper):
             except Exception:
                 kl_type = pya.PCellDeclarationHelper.TypeString
 
-            # if param == "kwargs" and self.gf_component == "add_fidutials": 
-            #     print(param_type)
-            #     print(param_val)
-            #     print(str(pcell_methods[self.gf_component].__doc__))
+            if param == "kwargs" and self.gf_component == "add_fidutials": 
+                self.add_kwargs_params(params)
+
+            else :
                 
-            # set klayout pcell parameter
-            self_param = self.param(
-                    name=param,
-                    value_type=kl_type,
-                    description=param,
-                    default=param_default,
+                param_name = param if suffix == "" else f"{param}_{suffix}"
+                # set klayout pcell parameter
+                self_param = self.param(
+                        name=param_name,
+                        value_type=kl_type,
+                        description=param_name,
+                        default=param_default,
+                    )
+                
+                # append parameter values
+                self.param_values.append(
+                    self_param
                 )
             
-            # append parameter values
-            self.param_values.append(
-                self_param
-            )
-
             # generate options for parameters with listed values 
             if "layer" in param and param not in not_lay  : 
                 self.Type_handle = self_param
@@ -104,14 +105,12 @@ class pcell_generator(pya.PCellDeclarationHelper):
                 self.Type_handle = self_param
                 for port_type in port_types :
                     self.Type_handle.add_choice(port_type, port_type)
-            
 
 
     def produce_impl(self):
         """Produce the PCell."""
         # get gdsfactory pcell parameters
         params = self.update_params()
-        print(params)
 
         # generate pcell klayout cell
         cell = self.gdsfactory_to_klayout(**params)
@@ -159,9 +158,32 @@ class pcell_generator(pya.PCellDeclarationHelper):
 
         return top
     
+    def add_kwargs_params(self,params):
+        
+        try :
+            kwargs_fn = str(pcell_methods[self.gf_component].__doc__).split("kwargs:")[1].split(" ")[1]
+        except :
+            kwargs_fn = f"kwargs_{self.gf_component}"
+        
+        kwargs_param = ""
+        for param_with_kwargs in params_with_kwargs :
+            kwargs_param = param_with_kwargs if param_with_kwargs in params else kwargs_param
+
+        kwargs_param_cmp = self.param_values[self.param_keys.index(kwargs_param)].default
+        print("kkkkkkk",kwargs_param_cmp)
+        if "<" in kwargs_param_cmp :
+            kwargs_param_cmp = kwargs_param_cmp.split("function")[1].split(" ")[1]
+        kwargs_params = pcell_params[kwargs_param_cmp]["parameter_names"]
+        
+        self.set_params(kwargs_params,kwargs_param_cmp,suffix=kwargs_fn)
+
+        self.param_keys.remove("kwargs")
+    
     def update_params(self):
         """Update klayout pcells parameters to be passed to gdsfactory components"""
         
+        # params = dict(zip(self.param_keys, self._param_values))
+        # self.add_kwargs_params(params)
         params = dict(zip(self.param_keys, self._param_values))
 
         tuples_list_params = ["bbox","sizes","offsets"]

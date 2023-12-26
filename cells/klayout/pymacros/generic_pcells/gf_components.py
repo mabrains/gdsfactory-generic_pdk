@@ -25,6 +25,7 @@ import inspect
 import gdsfactory as gf
 import pya
 from typing import Optional
+from .gf_layers_def import LAYER
 
 # Get methods of the gf.compoenents module
 compoenents_module = gf.components
@@ -70,3 +71,9 @@ klayout_types = {
     "bool" : pya.PCellDeclarationHelper.TypeBoolean,
     "component" : pya.PCellDeclarationHelper.TypeCallback,
 }
+
+# define used variables
+layers = LAYER.keys() # layers list
+not_lay = ["layers","bbox_layers"] # parameter with layer string but not layer parameter
+port_types = ["electrical","optical"] # ports types list
+params_with_kwargs = ["component"]

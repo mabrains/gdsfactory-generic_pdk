@@ -20,31 +20,3 @@
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 # SPDX-License-Identifier: GPL-3.0
 # ========================================================================
-
-# ============================================================================
-# --------------- Pcells Generators for Gdsfactory Generic PDK ---------------
-# ============================================================================
-
-import pya
-
-from generic_pcells.klayout_pcells import pcell_generator
-from generic_pcells.gf_components import pcell_methods
-
-
-# It's a Python class that inherits from the pya.Library class
-class generic_pdk(pya.Library):
-    """
-    The library where we will put the PCell into
-    """
-
-    def __init__(self):
-        # Set the description
-        self.description = "Generic PDK Pcells"
-    
-        for pcell_name, _ in pcell_methods.items():
-            # Create the PCell declarations
-
-            self.layout().register_pcell(pcell_name, pcell_generator(pcell_name))
-
-        # Register us with the name "generic_pdk".
-        self.register("generic_pdk")
