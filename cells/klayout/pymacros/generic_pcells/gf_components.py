@@ -30,7 +30,6 @@ from .gf_layers_def import LAYER
 # Get methods of the gf.compoenents module
 compoenents_module = gf.components
 methods = inspect.getmembers(gf.components)
-# gf.components.add_fiducials()
 
 # Filter out only methods
 pcells = [method for method in methods if inspect.isfunction(method[1])]
@@ -58,22 +57,28 @@ for pcell in pcells:
     pcell_params[pcell_fn_name]["parameter_names"] = parameter_names
     pcell_params[pcell_fn_name]["parameters"] = parameters
 
+
+# define global used variables
 klayout_types = {
-    float : pya.PCellDeclarationHelper.TypeDouble,
+    float: pya.PCellDeclarationHelper.TypeDouble,
     int: pya.PCellDeclarationHelper.TypeInt,
     tuple: pya.PCellDeclarationHelper.TypeList,
-    str : pya.PCellDeclarationHelper.TypeString,
-    bool : pya.PCellDeclarationHelper.TypeBoolean,
-    "float" : pya.PCellDeclarationHelper.TypeDouble,
+    str: pya.PCellDeclarationHelper.TypeString,
+    bool: pya.PCellDeclarationHelper.TypeBoolean,
+    "float": pya.PCellDeclarationHelper.TypeDouble,
     "int": pya.PCellDeclarationHelper.TypeInt,
     "tuple": pya.PCellDeclarationHelper.TypeList,
-    "str" : pya.PCellDeclarationHelper.TypeString,
-    "bool" : pya.PCellDeclarationHelper.TypeBoolean,
-    "component" : pya.PCellDeclarationHelper.TypeCallback,
+    "str": pya.PCellDeclarationHelper.TypeString,
+    "bool": pya.PCellDeclarationHelper.TypeBoolean,
+    "component": pya.PCellDeclarationHelper.TypeCallback,
 }
-
-# define used variables
-layers = LAYER.keys() # layers list
-not_lay = ["layers","bbox_layers"] # parameter with layer string but not layer parameter
-port_types = ["electrical","optical"] # ports types list
-params_with_kwargs = ["component"]
+layers = LAYER.keys()  # layers list
+not_lay = [
+    "layers",
+    "bbox_layers",
+    "layer_label"
+]  # parameter with layer string but not layer parameter
+port_types = ["electrical", "optical"]  # ports types list
+params_with_kwargs = ["component", "cross_section"]
+tuples_list_params = ["bbox", "sizes", "offsets","layer_label"]
+gf.components.add_grating_couplers()

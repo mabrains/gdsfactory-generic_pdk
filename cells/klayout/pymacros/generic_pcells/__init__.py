@@ -40,7 +40,7 @@ class generic_pdk(pya.Library):
     def __init__(self):
         # Set the description
         self.description = "Generic PDK Pcells"
-    
+
         for pcell_name, _ in pcell_methods.items():
             # Create the PCell declarations
 
