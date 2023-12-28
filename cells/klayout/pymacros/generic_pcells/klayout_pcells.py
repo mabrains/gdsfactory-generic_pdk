@@ -37,6 +37,7 @@ from generic_pcells.gf_layers_def import LAYER
 import numpy as np
 from flayout.pcell import copy_tree
 import ast
+import os
 
 
 class pcell_generator(pya.PCellDeclarationHelper):
@@ -152,9 +153,7 @@ class pcell_generator(pya.PCellDeclarationHelper):
         print(params)
 
         # generate pcell klayout cell
-        cell = self.gdsfactory_to_klayout(**params)
-        cell.name = params["name"] if "name" in params.keys() else self.gf_component
-        copy_tree(cell, self.cell, on_same_name="replace")
+        self.gdsfactory_to_klayout(**params)
 
     def gdsfactory_to_klayout(self, **kwargs):
         """Generate Klayout cell from gdsfactory cell
@@ -163,42 +162,29 @@ class pcell_generator(pya.PCellDeclarationHelper):
         """
         gf.clear_cache()  # Clear cache to be able to reload components without changing the name
 
-        # read the current klayout window
-        layout = (
-            pya.Application.instance()
-            .main_window()
-            .current_view()
-            .active_cellview()
-            .layout()
-        )
-
         # generate gdsfactory cell
         self.gf_cell = pcell_methods[self.gf_component](**kwargs)
 
-        # generate klayout cell
-        top = layout.create_cell(self.gf_component)
+        instance = self.gf_to_pya(self.gf_cell, self.gf_component)
 
-        # Add polygons from gdsfactory cell to klayout cell
-        polygons = self.gf_cell.get_polygons(True)
-        for layer, polygons in polygons.items():
-            layer_idx = layout.layer(*layer)
+        write_cells = pya.CellInstArray(
+            instance.cell_index(),
+            pya.Trans(pya.Point(0, 0)),
+            pya.Vector(0, 0),
+            pya.Vector(0, 0),
+            1,
+            1,
+        )
 
-            # Add pya.Polygon for every gdsfactory Polygon
-            for polygon in polygons:
-                polygon = np.array(polygon)
-                polygon = polygon * 1000
-                points_pya = [pya.Point(*p) for p in polygon]
-                top.shapes(layer_idx).insert(pya.Polygon(points_pya))
+        self.cell.insert(write_cells)
+        self.cell.flatten(1)
+    
+    def gf_to_pya(self, c: gf.Component, device_name: str):
+        c.write_gds(str(device_name) + "_temp.gds")
+        self.layout.read(str(device_name) + "_temp.gds")
+        os.remove(str(device_name) + "_temp.gds")
 
-        # Add all text
-        labels = self.gf_cell.get_labels(True)
-        for label in labels:
-            layer_idx = layout.layer(label.layer, label.texttype)
-            top.shapes(layer_idx).insert(
-                pya.Text(label.text, label.center[0] * 1000, label.center[1] * 1000)
-            )
-
-        return top
+        return self.layout.cell(c.name)
 
     def update_params(self):
         """Update klayout pcells parameters to be passed to gdsfactory components"""

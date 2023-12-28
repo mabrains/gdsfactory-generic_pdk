@@ -76,9 +76,8 @@ layers = LAYER.keys()  # layers list
 not_lay = [
     "layers",
     "bbox_layers",
-    "layer_label"
+    "layer_label",
 ]  # parameter with layer string but not layer parameter
 port_types = ["electrical", "optical"]  # ports types list
 params_with_kwargs = ["component", "cross_section"]
-tuples_list_params = ["bbox", "sizes", "offsets","layer_label"]
-gf.components.add_grating_couplers()
+tuples_list_params = ["bbox", "sizes", "offsets", "layer_label"]
