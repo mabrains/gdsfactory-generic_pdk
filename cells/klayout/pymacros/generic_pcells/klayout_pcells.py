@@ -26,6 +26,9 @@ import pya
 from generic_pcells.gf_components import (
     pcell_methods,
     pcell_params,
+    get_valid_components
+)
+from generic_pcells.globals import (
     klayout_types,
     layers,
     not_lay,
@@ -34,8 +37,6 @@ from generic_pcells.gf_components import (
     tuples_list_params,
 )
 from generic_pcells.gf_layers_def import LAYER
-import numpy as np
-from flayout.pcell import copy_tree
 import ast
 import os
 
@@ -93,6 +94,11 @@ class pcell_generator(pya.PCellDeclarationHelper):
                 self.Type_handle = self_param
                 for port_type in port_types:
                     self.Type_handle.add_choice(port_type, port_type)
+            elif "gdsfactory.component.Component" in (str(param_val)):
+                self.Type_handle = self_param
+                gf_components = get_valid_components(param)
+                for gf_component in gf_components:
+                    self.Type_handle.add_choice(gf_component, gf_component)
 
     def get_param_types(self, param, param_val, param_default):
         """Determine passed parameter klayout type
@@ -178,8 +184,10 @@ class pcell_generator(pya.PCellDeclarationHelper):
 
         self.cell.insert(write_cells)
         self.cell.flatten(1)
-    
+
     def gf_to_pya(self, c: gf.Component, device_name: str):
+
+        c.name = str(device_name) + "_temp"
         c.write_gds(str(device_name) + "_temp.gds")
         self.layout.read(str(device_name) + "_temp.gds")
         os.remove(str(device_name) + "_temp.gds")
@@ -221,12 +229,22 @@ class pcell_generator(pya.PCellDeclarationHelper):
                 if kwargs_k in kwargs_params:
                     params[kwargs_k] = kwargs_v
 
+        # update read values type
+        for param_k, param_v in params.items():
+            try:
+                params[param_k] = ast.literal_eval(param_v)
+            except Exception:
+                params[param_k] = param_v
+
+            if str(param_v).lower() in list(LAYER.keys()):
+                params[param_k] = LAYER[str(param_v).lower()]
+
         # update parameters that pass list of tuples as string
-        for tuples_list_param in tuples_list_params:
-            if tuples_list_param in self.param_keys:
-                params[tuples_list_param] = ast.literal_eval(
-                    str(params[tuples_list_param])
-                )
+        # for tuples_list_param in tuples_list_params:
+        #     if tuples_list_param in self.param_keys:
+        #         params[tuples_list_param] = ast.literal_eval(
+        #             str(params[tuples_list_param])
+        #         )
 
         # remove parameters with unvalid input such as empty string or None value
         none_params = []

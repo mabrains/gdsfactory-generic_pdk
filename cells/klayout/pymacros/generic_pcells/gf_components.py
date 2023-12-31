@@ -23,9 +23,7 @@
 
 import inspect
 import gdsfactory as gf
-import pya
-from typing import Optional
-from .gf_layers_def import LAYER
+from generic_pcells.globals import basic_shapes_componenets
 
 # Get methods of the gf.compoenents module
 compoenents_module = gf.components
@@ -58,26 +56,29 @@ for pcell in pcells:
     pcell_params[pcell_fn_name]["parameters"] = parameters
 
 
-# define global used variables
-klayout_types = {
-    float: pya.PCellDeclarationHelper.TypeDouble,
-    int: pya.PCellDeclarationHelper.TypeInt,
-    tuple: pya.PCellDeclarationHelper.TypeList,
-    str: pya.PCellDeclarationHelper.TypeString,
-    bool: pya.PCellDeclarationHelper.TypeBoolean,
-    "float": pya.PCellDeclarationHelper.TypeDouble,
-    "int": pya.PCellDeclarationHelper.TypeInt,
-    "tuple": pya.PCellDeclarationHelper.TypeList,
-    "str": pya.PCellDeclarationHelper.TypeString,
-    "bool": pya.PCellDeclarationHelper.TypeBoolean,
-    "component": pya.PCellDeclarationHelper.TypeCallback,
-}
-layers = LAYER.keys()  # layers list
-not_lay = [
-    "layers",
-    "bbox_layers",
-    "layer_label",
-]  # parameter with layer string but not layer parameter
-port_types = ["electrical", "optical"]  # ports types list
-params_with_kwargs = ["component", "cross_section"]
-tuples_list_params = ["bbox", "sizes", "offsets", "layer_label"]
+def get_valid_components(param, simple_cmp=0):
+    gf_components = [""]
+    if "pad" in param:
+        gf_components = gf_components + ["pad"]
+    elif "grating_coupler" in param:
+
+        add_componenets_list = [
+            gf_cmp
+            for gf_cmp in list(pcell_methods.keys())
+            if ("grating_coupler") in gf_cmp
+        ]
+        not_in_components = ["array", "tree", "add", "array4"]
+        for not_in_cmp in not_in_components:
+            for add_componenet in add_componenets_list:
+                if not_in_cmp in add_componenet:
+                    add_componenets_list.remove(add_componenet)
+
+        gf_components = gf_components + add_componenets_list
+
+    elif simple_cmp == 1:
+        gf_components = gf_components + basic_shapes_componenets
+
+    else:
+        gf_components = gf_components + list(pcell_methods.keys())
+
+    return gf_components
