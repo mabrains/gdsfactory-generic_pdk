@@ -26,7 +26,7 @@ import pya
 from generic_pcells.gf_components import (
     pcell_methods,
     pcell_params,
-    get_valid_components
+    get_valid_components,
 )
 from generic_pcells.globals import (
     klayout_types,
@@ -121,6 +121,12 @@ class pcell_generator(pya.PCellDeclarationHelper):
                 .lower()
                 .split("optional")[0]
             )
+            if (
+                "Callable"
+                in str(param_val).replace(" ", "").split(":")[1].split("=")[0]
+            ):
+                param_type = "function"
+
             param_type = "tuple" if "layers" in param else param_type
             param_type = (
                 "str"
@@ -130,8 +136,6 @@ class pcell_generator(pya.PCellDeclarationHelper):
         # set type to default value type if couldn not extract it from definition stringS
         except Exception:
             param_type = type(param_default)
-
-        param_type = type(param_default) if param_type == "" else param_type
 
         # get klayout pcell parameter type
         try:
@@ -162,7 +166,7 @@ class pcell_generator(pya.PCellDeclarationHelper):
         self.gdsfactory_to_klayout(**params)
 
     def gdsfactory_to_klayout(self, **kwargs):
-        """Generate Klayout cell from gdsfactory cell
+        """Write Klayout cell from gdsfactory cell
         Args:
             kwargs (dict) : passed arguments of the generated pcell
         """
@@ -186,6 +190,11 @@ class pcell_generator(pya.PCellDeclarationHelper):
         self.cell.flatten(1)
 
     def gf_to_pya(self, c: gf.Component, device_name: str):
+        """Generate Klayout cell from gdsfactory cell
+        Args:
+            c (gf.Component) : gdsfactory componenet
+            device_name (str) : name of gdsfactory cell
+        """
 
         c.name = str(device_name) + "_temp"
         c.write_gds(str(device_name) + "_temp.gds")
@@ -202,6 +211,7 @@ class pcell_generator(pya.PCellDeclarationHelper):
 
         # replace kwargs key with the passed componenet parameters
         param_keys = self.param_keys
+        print(params)
         if (
             "kwargs" in param_keys
             and params["kwargs"] != ""
@@ -238,13 +248,6 @@ class pcell_generator(pya.PCellDeclarationHelper):
 
             if str(param_v).lower() in list(LAYER.keys()):
                 params[param_k] = LAYER[str(param_v).lower()]
-
-        # update parameters that pass list of tuples as string
-        # for tuples_list_param in tuples_list_params:
-        #     if tuples_list_param in self.param_keys:
-        #         params[tuples_list_param] = ast.literal_eval(
-        #             str(params[tuples_list_param])
-        #         )
 
         # remove parameters with unvalid input such as empty string or None value
         none_params = []

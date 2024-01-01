@@ -131,9 +131,14 @@ def gen_param_patt(pcell_data, def_vals, pcell_name):
 
         # set random testing patterns (values) based on parameter type
         if type(def_val) is float:
-            patt_vals[param_k] = random.uniform(
-                def_val * min_limit, def_val * max_limit
-            )
+            if param_k == "grating_separation":
+                patt_vals[param_k] = def_val
+            elif param_k == "p":
+                patt_vals[param_k] = random.uniform(0, 1)
+            else:
+                patt_vals[param_k] = random.uniform(
+                    def_val * min_limit, def_val * max_limit
+                )
         elif type(def_val) is int and def_val > 0:
             patt_vals[param_k] = random.randint(
                 def_val * min_limit, def_val * max_limit
@@ -153,7 +158,11 @@ def gen_param_patt(pcell_data, def_vals, pcell_name):
                 patt_vals[param_k] = def_val
 
         elif "ComponentSpec" in str(param_v) or str(def_val) in pcell_methods.keys():
-            valid_components = get_valid_components(param_k, simple_cmp=1)
+
+            if "component" in param_k or "grating_coupler" in pcell_name:
+                valid_components = [""]
+            else:
+                valid_components = get_valid_components(param_k, simple_cmp=1)
 
             patt_vals[param_k] = random.choice(list(valid_components))
 
@@ -211,6 +220,8 @@ def draw_patterns(lib, layout_path):
 
     # iterate over generic pdk pcells and generate patterns for each
     for pcell_name in pcell_methods.keys():
+        # if "add_trenches" in pcell_name :
+        #     break
         print(pcell_name)
 
         # define pcell output path

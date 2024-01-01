@@ -57,6 +57,12 @@ for pcell in pcells:
 
 
 def get_valid_components(param, simple_cmp=0):
+    """Returns Valid components list for the passed parameters
+        Args:
+            param (str) : name of the passed parameter
+            simple_cmp (bool) : select to generate simple (basic) shapes componenets
+        """
+
     gf_components = [""]
     if "pad" in param:
         gf_components = gf_components + ["pad"]
@@ -75,9 +81,14 @@ def get_valid_components(param, simple_cmp=0):
 
         gf_components = gf_components + add_componenets_list
 
+    elif "bend" in param:
+        bend_componenets = [
+            bnd_cmp for bnd_cmp in list(pcell_methods.keys()) if "bend" in bnd_cmp
+        ]
+        gf_components = gf_components + bend_componenets
+
     elif simple_cmp == 1:
         gf_components = gf_components + basic_shapes_componenets
-
     else:
         gf_components = gf_components + list(pcell_methods.keys())
 
