@@ -47,23 +47,23 @@ viac_en_1_l1.forget
 viac_en_1_l2.forget
 viac_en_1_l.forget
 
-# Rule viac.en.1: ppp minimum overlap of viac is 0.1µm.
-logger.info("Executing rule viac.en.1")
-viac_en_1_l1 = viac_layer.enclosed(ppp_layer, 0.1.um, euclidian).polygons(0.001.um)
-viac_en_1_l2 = viac_layer.not_outside(ppp_layer).not(ppp_layer)
-viac_en_1_l  = viac_en_1_l1.join(viac_en_1_l2)
-viac_en_1_l.output("viac.en.1", "viac.en.1 : ppp minimum overlap of viac : 0.1µm.")
-viac_en_1_l1.forget
-viac_en_1_l2.forget
-viac_en_1_l.forget
+# Rule viac.en.2: ppp minimum overlap of viac is 0.1µm.
+logger.info("Executing rule viac.en.2")
+viac_en_2_l1 = viac_layer.enclosed(ppp_layer, 0.1.um, euclidian).polygons(0.001.um)
+viac_en_2_l2 = viac_layer.not_outside(ppp_layer).not(ppp_layer)
+viac_en_2_l  = viac_en_2_l1.join(viac_en_2_l2)
+viac_en_2_l.output("viac.en.2", "viac.en.2 : ppp minimum overlap of viac : 0.1µm.")
+viac_en_2_l1.forget
+viac_en_2_l2.forget
+viac_en_2_l.forget
 
-# Rule viac.en.1: m1 minimum overlap of viac is 0.2µm.
-logger.info("Executing rule viac.en.1")
-viac_en_1_l1 = viac_layer.enclosed(m1_layer, 0.2.um, euclidian).polygons(0.001.um)
-viac_en_1_l2 = viac_layer.not_outside(m1_layer).not(m1_layer)
-viac_en_1_l  = viac_en_1_l1.join(viac_en_1_l2)
-viac_en_1_l.output("viac.en.1", "viac.en.1 : m1 minimum overlap of viac : 0.2µm.")
-viac_en_1_l1.forget
-viac_en_1_l2.forget
-viac_en_1_l.forget
+# Rule viac.en.3: m1 minimum overlap of viac is 0.2µm.
+logger.info("Executing rule viac.en.3")
+viac_en_3_l1 = viac_layer.enclosed(m1_layer, 0.2.um, euclidian).polygons(0.001.um)
+viac_en_3_l2 = viac_layer.not_outside(m1_layer).not(m1_layer)
+viac_en_3_l  = viac_en_3_l1.join(viac_en_3_l2)
+viac_en_3_l.output("viac.en.3", "viac.en.3 : m1 minimum overlap of viac : 0.2µm.")
+viac_en_3_l1.forget
+viac_en_3_l2.forget
+viac_en_3_l.forget
 
