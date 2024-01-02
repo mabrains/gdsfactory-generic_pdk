@@ -50,4 +50,5 @@ C {tests/test_mzi1x2_2x2.sym} 520 -450 0 0 {name=x7}
 C {tests/test_mzi2x2_2x2_phase_shifter.sym} 500 -360 0 0 {name=x8}
 C {tests/test_mzi_phase_shifter.sym} 530 -250 0 0 {name=x9}
 C {tests/test_mzit.sym} 520 -130 0 0 {name=x10}
-C {tests/test_mzm.sym} 940 -530 0 0 {name=x11}
+C {tests/test_mzm.sym} 950 -340 0 0 {name=x11}
+C {tests/test_ring_double.sym} 1620 -560 0 0 {name=x12}
