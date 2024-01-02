@@ -29,80 +29,74 @@ K {}
 V {}
 S {}
 E {}
-N 1060 -610 1060 -530 {
-lab=pin1}
-N 1000 -610 1060 -610 {
-lab=pin1}
-N 770 -370 770 -170 {
+N 220 -550 510 -550 {
 lab=#net1}
-N 770 -170 1020 -170 {
+N 510 -550 510 -340 {
 lab=#net1}
-N 1330 -380 1330 -170 {
+N 220 -420 380 -420 {
 lab=#net2}
-N 1100 -170 1330 -170 {
+N 380 -420 380 -340 {
 lab=#net2}
-N 330 -330 410 -330 {
+N 510 70 860 70 {
 lab=#net3}
-N 370 -860 370 -830 {
-lab=pin2}
-N 1690 -490 1690 -420 {
+N 380 200 860 200 {
 lab=#net4}
-N 1770 -490 1770 -340 {
+N 380 70 380 200 {
+lab=#net4}
+N 1270 200 1520 200 {
 lab=#net5}
-N 1690 -340 1770 -340 {
-lab=#net5}
-N 410 -470 410 -410 {
+N 1270 70 1620 70 {
 lab=#net6}
-N 330 -470 330 -330 {
-lab=#net3}
-N 1730 -890 1730 -850 {
+N 1520 200 1750 200 {
+lab=#net5}
+N 1750 70 1750 200 {
+lab=#net5}
+N 1620 -510 1620 -340 {
 lab=pin3}
-C {devices/title.sym} 160 -30 0 0 {name=l5 author="Generic PDK Authors"}
-C {../symbols/mmi1x2.sym} 890 30 0 0 {name=mmi4
+N 1750 -510 1750 -340 {
+lab=pin4}
+N -330 -550 -190 -550 {
+lab=pin1}
+N -330 -420 -190 -420 {
+lab=pin2}
+C {devices/title.sym} -440 350 0 0 {name=l5 author="Generic PDK Authors"}
+C {symbols/mmi2x2.sym} 30 -10 0 0 {name=mmi2
 width_mmi=2.5
 length_mmi=5.5
 gap_mmi=0.25
 width=0.5
 width_taper=1
 length_taper=10
-model=mmi1x2
+model=mmi2x2
 spiceprefix=P}
-C {devices/iopin.sym} 1010 -610 2 0 {name=p1 lab=pin1}
-C {devices/iopin.sym} 1730 -880 3 0 {name=p3 lab=pin3}
-C {../symbols/mmi1x2.sym} 1890 -210 3 0 {name=mmi1
+C {symbols/mmi2x2.sym} -30 -120 1 0 {name=mmi1
 width_mmi=2.5
 length_mmi=5.5
 gap_mmi=0.25
 width=0.5
 width_taper=1
 length_taper=10
-model=mmi1x2
+model=mmi2x2
 spiceprefix=P}
-C {../symbols/mmi1x2.sym} 210 -540 1 0 {name=mmi2
+C {symbols/mmi2x2.sym} 1080 610 0 0 {name=mmi3
 width_mmi=2.5
 length_mmi=5.5
 gap_mmi=0.25
 width=0.5
 width_taper=1
 length_taper=10
-model=mmi1x2
+model=mmi2x2
 spiceprefix=P}
-C {../symbols/mmi1x2.sym} 200 -270 0 0 {name=mmi5
+C {symbols/mmi2x2.sym} 2160 -150 3 0 {name=mmi4
 width_mmi=2.5
 length_mmi=5.5
 gap_mmi=0.25
 width=0.5
 width_taper=1
 length_taper=10
-model=mmi1x2
+model=mmi2x2
 spiceprefix=P}
-C {devices/iopin.sym} 370 -850 3 0 {name=p4 lab=pin2}
-C {../symbols/mmi1x2.sym} 1560 -290 0 0 {name=mmi3
-width_mmi=2.5
-length_mmi=5.5
-gap_mmi=0.25
-width=0.5
-width_taper=1
-length_taper=10
-model=mmi1x2
-spiceprefix=P}
+C {devices/iopin.sym} -330 -550 0 1 {name=p1 lab=pin1}
+C {devices/iopin.sym} -330 -420 0 1 {name=p2 lab=pin2}
+C {devices/iopin.sym} 1620 -510 1 1 {name=p3 lab=pin3}
+C {devices/iopin.sym} 1750 -510 1 1 {name=p4 lab=pin4}

@@ -29,36 +29,40 @@ K {}
 V {}
 S {}
 E {}
-N 1060 -610 1060 -530 {
-lab=pin1}
-N 1000 -610 1060 -610 {
-lab=pin1}
-N 770 -370 770 -170 {
-lab=#net1}
-N 770 -170 1020 -170 {
-lab=#net1}
-N 1330 -380 1330 -170 {
-lab=#net2}
-N 1100 -170 1330 -170 {
-lab=#net2}
-N 330 -330 410 -330 {
-lab=#net3}
-N 370 -860 370 -830 {
-lab=pin2}
-N 1690 -490 1690 -420 {
-lab=#net4}
-N 1770 -490 1770 -340 {
-lab=#net5}
-N 1690 -340 1770 -340 {
-lab=#net5}
-N 410 -470 410 -410 {
-lab=#net6}
-N 330 -470 330 -330 {
-lab=#net3}
-N 1730 -890 1730 -850 {
+N 1690 -505 1690 -335 {
 lab=pin3}
-C {devices/title.sym} 160 -30 0 0 {name=l5 author="Generic PDK Authors"}
-C {../symbols/mmi1x2.sym} 890 30 0 0 {name=mmi4
+N 1750 -505 1750 -335 {
+lab=pin4}
+N -300 -505 -160 -505 {
+lab=pin1}
+N -300 -445 -160 -445 {
+lab=pin2}
+N 160 -385 385 -385 {}
+N 385 -385 385 -320 {}
+N 160 -425 425 -425 {}
+N 425 -425 425 -320 {}
+N 160 -465 465 -465 {}
+N 465 -465 465 -320 {}
+N 160 -505 505 -505 {}
+N 505 -505 505 -320 {}
+N 445 70 865 70 {}
+N 445 0 445 70 {}
+N 385 130 865 130 {}
+N 385 0 385 130 {}
+N 1185 70 1630 70 {}
+N 1630 -15 1630 70 {}
+N 1670 -15 1670 110 {}
+N 1185 110 1670 110 {}
+N 1710 -15 1710 150 {}
+N 1185 150 1710 150 {}
+N 1750 -15 1750 190 {}
+N 1185 190 1750 190 {}
+C {devices/title.sym} -440 350 0 0 {name=l5 author="Generic PDK Authors"}
+C {devices/iopin.sym} -300 -505 0 1 {name=p1 lab=pin1}
+C {devices/iopin.sym} -300 -445 0 1 {name=p2 lab=pin2}
+C {devices/iopin.sym} 1690 -505 1 1 {name=p3 lab=pin3}
+C {devices/iopin.sym} 1750 -505 1 1 {name=p4 lab=pin4}
+C {symbols/mmi_90degree_hybrid.sym} -70 -440 0 0 {name=mmi1
 width_mmi=2.5
 length_mmi=5.5
 gap_mmi=0.25
@@ -67,9 +71,7 @@ width_taper=1
 length_taper=10
 model=mmi1x2
 spiceprefix=P}
-C {devices/iopin.sym} 1010 -610 2 0 {name=p1 lab=pin1}
-C {devices/iopin.sym} 1730 -880 3 0 {name=p3 lab=pin3}
-C {../symbols/mmi1x2.sym} 1890 -210 3 0 {name=mmi1
+C {symbols/mmi_90degree_hybrid.sym} 450 -90 3 0 {name=mmi2
 width_mmi=2.5
 length_mmi=5.5
 gap_mmi=0.25
@@ -78,7 +80,7 @@ width_taper=1
 length_taper=10
 model=mmi1x2
 spiceprefix=P}
-C {../symbols/mmi1x2.sym} 210 -540 1 0 {name=mmi2
+C {symbols/mmi_90degree_hybrid.sym} 955 135 0 0 {name=mmi3
 width_mmi=2.5
 length_mmi=5.5
 gap_mmi=0.25
@@ -87,17 +89,7 @@ width_taper=1
 length_taper=10
 model=mmi1x2
 spiceprefix=P}
-C {../symbols/mmi1x2.sym} 200 -270 0 0 {name=mmi5
-width_mmi=2.5
-length_mmi=5.5
-gap_mmi=0.25
-width=0.5
-width_taper=1
-length_taper=10
-model=mmi1x2
-spiceprefix=P}
-C {devices/iopin.sym} 370 -850 3 0 {name=p4 lab=pin2}
-C {../symbols/mmi1x2.sym} 1560 -290 0 0 {name=mmi3
+C {symbols/mmi_90degree_hybrid.sym} 1685 -245 1 0 {name=mmi4
 width_mmi=2.5
 length_mmi=5.5
 gap_mmi=0.25
