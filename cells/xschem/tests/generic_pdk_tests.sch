@@ -23,15 +23,15 @@ E {}
 L 7 440 -730 440 -60 {}
 L 7 1210 -730 1210 -60 {}
 L 7 1550 -730 1550 -60 {}
-L 7 1890 -730 1890 -60 {}
-L 7 2230 -730 2230 -60 {}
+L 7 1980 -730 1980 -60 {}
+L 7 2320 -730 2320 -60 {}
 L 7 20 -730 20 -60 {}
 L 7 880 -730 880 -60 {}
 T {MMI} 40 -710 0 0 0.8 0.8 {}
 T {MZI} 460 -710 0 0 0.8 0.8 {}
 T {Heater} 1240 -710 0 0 0.8 0.8 {}
 T {Ring} 1570 -710 0 0 0.8 0.8 {}
-T {Coupler} 1920 -710 0 0 0.8 0.8 {}
+T {Coupler} 2010 -710 0 0 0.8 0.8 {}
 T {MZM} 910 -710 0 0 0.8 0.8 {}
 C {test_mmi1x2.sym} 180 -600 0 0 {name=x1}
 C {devices/title.sym} 160 -30 0 0 {name=l5 author="GenericPDK Authors"}
@@ -51,4 +51,10 @@ C {tests/test_mzi2x2_2x2_phase_shifter.sym} 500 -360 0 0 {name=x8}
 C {tests/test_mzi_phase_shifter.sym} 530 -250 0 0 {name=x9}
 C {tests/test_mzit.sym} 520 -130 0 0 {name=x10}
 C {tests/test_mzm.sym} 950 -340 0 0 {name=x11}
-C {tests/test_ring_double.sym} 1620 -560 0 0 {name=x12}
+C {tests/test_ring_double.sym} 1620 -600 0 0 {name=x12}
+C {tests/test_ring_double_heater.sym} 1610 -510 0 0 {name=x13}
+C {tests/test_ring_double_pn.sym} 1610 -410 0 0 {name=x14}
+C {tests/test_ring_single.sym} 1640 -320 0 0 {name=x15}
+C {tests/test_ring_single_bend_coupler.sym} 1600 -230 0 0 {name=x16}
+C {tests/test_ring_single_heater.sym} 1650 -140 0 0 {name=x17}
+C {tests/test_ring_single_pn.sym} 1670 -70 0 0 {name=x18}
