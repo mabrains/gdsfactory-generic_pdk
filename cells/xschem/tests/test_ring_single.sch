@@ -29,47 +29,31 @@ K {}
 V {}
 S {}
 E {}
-N 2460 -635 2630 -635 {
-lab=pin3}
 N 2460 -355 2630 -355 {
-lab=#net1}
-N -340 -635 -200 -635 {
-lab=pin1}
+lab=pin4}
 N -340 -355 -200 -355 {
-lab=pin2}
-N 180 -635 505 -635 {
-lab=#net2}
+lab=pin1}
 N 180 -355 335 -355 {
-lab=#net3}
-N 615 -635 615 -355 {
-lab=#net2}
-N 505 -635 615 -635 {
-lab=#net2}
-N 615 25 840 25 {
-lab=#net4}
+lab=#net1}
 N 340 305 840 305 {
-lab=#net5}
+lab=#net2}
 N 335 25 335 305 {
-lab=#net5}
+lab=#net2}
 N 335 305 340 305 {
-lab=#net5}
-N 1220 25 1490 25 {
-lab=#net6}
-N 1770 25 1770 305 {
-lab=#net7}
-N 1220 305 1770 305 {
-lab=#net7}
+lab=#net2}
 N 1770 -355 2080 -355 {
-lab=#net8}
-N 1490 -635 2080 -635 {
-lab=#net9}
-N 1490 -635 1490 -355 {
-lab=#net9}
+lab=#net3}
+N 1220 305 1485 305 {
+lab=#net4}
+N 1485 305 1490 305 {
+lab=#net4}
+N 1490 25 1490 305 {
+lab=#net4}
+N 1490 -355 1770 -355 {
+lab=#net3}
 C {devices/title.sym} -435 455 0 0 {name=l5 author="Generic PDK Authors"}
-C {devices/iopin.sym} -340 -635 0 1 {name=p1 lab=pin1}
-C {devices/iopin.sym} -340 -355 0 1 {name=p2 lab=pin2}
-C {devices/iopin.sym} 2630 -635 2 1 {name=p3 lab=pin3}
-C {devices/iopin.sym} 2630 -355 2 1 {name=p4 lab=pin4}
+C {devices/iopin.sym} -340 -355 0 1 {name=p2 lab=pin1}
+C {devices/iopin.sym} 2630 -355 2 1 {name=p4 lab=pin2}
 C {symbols/ring_single.sym} -120 -120 0 0 {name=ring1
 gap=0.2
 radius=10.0

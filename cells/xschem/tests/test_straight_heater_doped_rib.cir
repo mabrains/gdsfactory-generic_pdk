@@ -1,4 +1,4 @@
-** test_ring_single circuit for GenericPDK
+** test_straight_heater_doped_rib circuit for GenericPDK
 * ========================================================================
 * SPDX-FileCopyrightText: 2023 Mabrains Company
 * Licensed under the GNU GENERAL PUBLIC License, Version 3.0 (the "License");
@@ -22,12 +22,17 @@
 * SPDX-License-Identifier: GPL-3.0
 * ========================================================================
 
-.subckt test_ring_single pin1 pin2
-*.PININFO pin1:B pin2:B
-Pring1 pin1 net1 ring_single gap=0.2 radius=10.0 length_x=4.0 length_y=0.6
-Pring2 net1 net2 ring_single gap=0.2 radius=10.0 length_x=4.0 length_y=0.6
-Pring3 net2 net4 ring_single gap=0.2 radius=10.0 length_x=4.0 length_y=0.6
-Pring4 net3 net4 ring_single gap=0.2 radius=10.0 length_x=4.0 length_y=0.6
-Pring5 net3 pin2 ring_single gap=0.2 radius=10.0 length_x=4.0 length_y=0.6
+.subckt test_straight_heater_doped_rib pin1 pin2 hp_pin hn_pin
+*.PININFO pin1:B pin2:B hp_pin:B hn_pin:B
+Pheater1 pin1 net1 hn_pin hp_pin straight_heater_doped_rib length=320.0 nsections=3 heater_width=2.0
++ heater_gap=0.8 via_stack_gap=0.0 width=0.5 xoffset_tip1=0.2 xoffset_tip2=0.4
+Pheater2 net1 net2 hn_pin hp_pin straight_heater_doped_rib length=320.0 nsections=3 heater_width=2.0
++ heater_gap=0.8 via_stack_gap=0.0 width=0.5 xoffset_tip1=0.2 xoffset_tip2=0.4
+Pheater3 net2 net3 hn_pin hp_pin straight_heater_doped_rib length=320.0 nsections=3 heater_width=2.0
++ heater_gap=0.8 via_stack_gap=0.0 width=0.5 xoffset_tip1=0.2 xoffset_tip2=0.4
+Pheater4 net3 net4 hn_pin hp_pin straight_heater_doped_rib length=320.0 nsections=3 heater_width=2.0
++ heater_gap=0.8 via_stack_gap=0.0 width=0.5 xoffset_tip1=0.2 xoffset_tip2=0.4
+Pheater5 net4 pin2 hn_pin hp_pin straight_heater_doped_rib length=320.0 nsections=3 heater_width=2.0
++ heater_gap=0.8 via_stack_gap=0.0 width=0.5 xoffset_tip1=0.2 xoffset_tip2=0.4
 .ends
 .end
