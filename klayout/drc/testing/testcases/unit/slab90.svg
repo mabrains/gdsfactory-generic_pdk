@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1273.811" height="363.211" viewBox="-741.4205 -296.5605 1273.811 363.211">
+<defs>
+<style type="text/css">
+.l1112d0 {fill:none;stroke:red;stroke-dasharray:8,8;}
+.l3d0 {stroke: #C2B280; fill: #C2B280; fill-opacity: 0.5;}
+.l1111d0 {fill:none;stroke:green;stroke-dasharray:8,8;}
+.l1113t0 {fill:none;stroke:blue;font-size:16px;}
+</style>
+</defs>
+<rect x="-741.4205" y="-296.5605" width="1273.811" height="363.211" fill="#222222" stroke="none"/>
+<g id="slab90" transform="scale(1 -1)">
+<polygon id="0x5641cdda1590" class="l3d0" points="0,0 0,0.9 0.9,0.9 0.9,0"/>
+<polygon id="0x5641cdda1600" class="l1111d0" points="-5,-5 -5,5.9 5.9,5.9 5.9,-5"/>
+<polygon id="0x5641cde5ff50" class="l3d0" points="-110.8,0.05 -110.8,0.85 -110,0.85 -110,0.05"/>
+<polygon id="0x5641cde5ffc0" class="l1112d0" points="-115.8,-4.95 -115.8,5.85 -105,5.85 -105,-4.95"/>
+<polygon id="0x5641cde60030" class="l3d0" points="110.9,-3.27 115.09,-3.27 118.34,-0.02 118.34,4.17 116.44,4.17 116.44,0.76 114.31,-1.37 110.9,-1.37"/>
+<polygon id="0x5641cde600a0" class="l1111d0" points="105.9,-8.27 105.9,9.17 123.34,9.17 123.34,-8.27"/>
+<polygon id="0x5641cde6f390" class="l3d0" points="-223.93,-1.12 -222.17,-1.12 -220.8,0.25 -220.8,2.02 -221.6,2.02 -221.6,0.58 -222.5,-0.32 -223.93,-0.32"/>
+<polygon id="0x5641cde6f400" class="l1112d0" points="-228.93,-6.12 -228.93,7.02 -215.8,7.02 -215.8,-6.12"/>
+<polygon id="0x5641cde6f470" class="l3d0" points="238.39,1.12 234.04,1.12 234.04,3.58 228.34,3.58 228.34,-0.22 232.69,-0.22 232.69,-2.68 238.39,-2.68"/>
+<polygon id="0x5641cde6f4e0" class="l1111d0" points="223.34,-7.68 223.34,8.58 243.39,8.58 243.39,-7.68"/>
+<polygon id="0x5641ce1d0960" class="l3d0" points="-333.93,0.59 -334.85,0.59 -334.85,1.11 -336.05,1.11 -336.05,0.31 -335.13,0.31 -335.13,-0.21 -333.93,-0.21"/>
+<polygon id="0x5641ce1d09d0" class="l1112d0" points="-341.05,-5.21 -341.05,6.11 -328.93,6.11 -328.93,-5.21"/>
+<polygon id="0x5641ce2084b0" class="l3d0" points="351.07,-3.75 356.79,-3.75 356.79,-1.05 351.09,-1.05 351.09,4.65 348.39,4.65 348.39,-1.07"/>
+<polygon id="0x5641ce208520" class="l1111d0" points="343.39,-8.75 343.39,9.65 361.79,9.65 361.79,-8.75"/>
+<polygon id="0x5641ce208610" class="l3d0" points="-448.45,-1.32 -446.05,-1.32 -446.05,-0.18 -448.45,-0.18 -448.45,2.22 -449.58,2.22 -449.58,-0.19"/>
+<polygon id="0x5641cde2ad00" class="l1112d0" points="-454.58,-6.32 -454.58,7.22 -441.05,7.22 -441.05,-6.32"/>
+<polygon id="0x5641cde2ae00" class="l3d0" points="469.49,1.35 467.69,1.35 466.79,0.45 466.79,-0.45 469.49,-0.45"/>
+<polygon id="0x5641cde2ae70" class="l1111d0" points="461.79,-5.45 461.79,6.35 474.49,6.35 474.49,-5.45"/>
+<polygon id="0x5641ce25bba0" class="l3d0" points="-560.15,1.25 -561.75,1.25 -562.55,0.45 -562.55,-0.35 -560.15,-0.35"/>
+<polygon id="0x5641ce25bc70" class="l1112d0" points="-568.12,-6.32 -568.12,7.22 -554.58,7.22 -554.58,-6.32"/>
+<polygon id="0x5641ce25bd90" class="l3d0" points="-674.92,-0.45 -673.12,-0.45 -673.12,1.35 -674.92,1.35 -675.82,0.45"/>
+<polygon id="0x5641ce25be60" class="l3d0" points="-676.72,1.35 -678.52,1.35 -678.52,-0.45 -676.72,-0.45 -675.82,0.45"/>
+<polygon id="0x5641ce25bff0" class="l1112d0" points="-683.52,-5.45 -683.52,6.35 -668.12,6.35 -668.12,-5.45"/>
+<polygon id="0x5641ce25c860" class="l3d0" points="-49.74,232.25 -49.74,233.66 -48.33,233.66 -48.33,232.25"/>
+<polygon id="0x5641ce25c8d0" class="l1111d0" points="-54.74,227.25 -54.74,238.66 -43.33,238.66 -43.33,227.25"/>
+<polygon id="0x5641ce25c990" class="l3d0" points="-160.69,232.48 -160.69,233.43 -159.74,233.43 -159.74,232.48"/>
+<polygon id="0x5641ce25ca50" class="l1112d0" points="-165.69,227.48 -165.69,238.43 -154.74,238.43 -154.74,227.48"/>
+<polygon id="0x5641ce25cf90" class="l3d0" points="4.24,119.35 4.24,117.55 3.34,117.55 3.34,119.35"/>
+<polygon id="0x5641ce25d050" class="l3d0" points="5.14,118 5.14,118.9 6.94,118.9 6.94,118"/>
+<polygon id="0x5641ce25d110" class="l1111d0" points="-1.66,112.55 -1.66,124.35 11.94,124.35 11.94,112.55"/>
+<polygon id="0x5641ce25d1d0" class="l3d0" points="-109.26,119.35 -109.26,117.55 -110.16,117.55 -110.16,119.35"/>
+<polygon id="0x5641ce25d290" class="l3d0" points="-108.46,118 -108.46,118.9 -106.66,118.9 -106.66,118"/>
+<polygon id="0x5641ce25d350" class="l1112d0" points="-115.16,112.55 -115.16,124.35 -101.66,124.35 -101.66,112.55"/>
+<polygon id="0x5641ce25d410" class="l3d0" points="128.34,118.45 123.98,118.45 122.64,117.1 122.64,114.65 128.34,114.65"/>
+<polygon id="0x5641ce25d480" class="l3d0" points="116.94,118.45 121.29,118.45 122.64,119.79 122.64,122.25 116.94,122.25"/>
+<polygon id="0x5641ce25d4f0" class="l1111d0" points="111.94,109.65 111.94,127.25 133.34,127.25 133.34,109.65"/>
+<polygon id="0x5641ce25d5b0" class="l3d0" points="-220.16,118.45 -222,118.45 -222.56,117.88 -222.56,116.85 -220.16,116.85"/>
+<polygon id="0x5641ce25d680" class="l3d0" points="-224.96,118.45 -223.13,118.45 -222.56,119.01 -222.56,120.05 -224.96,120.05"/>
+<polygon id="0x5641ce25d750" class="l1112d0" points="-229.96,111.85 -229.96,125.05 -215.16,125.05 -215.16,111.85"/>
+<polygon id="0x5641ce25d810" class="l3d0" points="242.84,117.55 244.64,117.55 244.64,119.35 242.84,119.35 241.94,118.45"/>
+<polygon id="0x5641ce25d8e0" class="l3d0" points="238.34,117.55 240.14,117.55 241.04,118.45 240.14,119.35 238.34,119.35"/>
+<polygon id="0x5641ce25d9b0" class="l1111d0" points="233.34,112.55 233.34,124.35 249.64,124.35 249.64,112.55"/>
+<polygon id="0x5641ce25da70" class="l3d0" points="-336.06,117.55 -334.26,117.55 -334.26,119.35 -336.06,119.35 -336.96,118.45"/>
+<polygon id="0x5641ce25db40" class="l3d0" points="-340.46,117.55 -338.66,117.55 -337.76,118.45 -338.66,119.35 -340.46,119.35"/>
+<polygon id="0x5641ce25dc10" class="l1112d0" points="-344.76,111.85 -344.76,125.05 -329.96,125.05 -329.96,111.85"/>
+<polygon id="0x5641ce25dcd0" class="l3d0" points="355.54,117.1 355.54,119.8 356.44,119.8 356.44,117.1"/>
+<polygon id="0x5641ce25dd90" class="l3d0" points="358.24,117.55 360.04,117.55 360.04,119.35 358.24,119.35 357.34,118.45"/>
+<polygon id="0x5641ce25de60" class="l1111d0" points="349.64,112.55 349.64,124.35 365.94,124.35 365.94,112.55"/>
+<polygon id="0x5641ce25df20" class="l3d0" points="-454.36,117.1 -454.36,119.8 -453.46,119.8 -453.46,117.1"/>
+<polygon id="0x5641ce25dfe0" class="l3d0" points="-451.76,117.55 -449.96,117.55 -449.96,119.35 -451.76,119.35 -452.66,118.45"/>
+<polygon id="0x5641ce25e0b0" class="l1112d0" points="-459.56,111.85 -459.56,125.05 -444.76,125.05 -444.76,111.85"/>
+<polygon id="0x5641ce25e170" class="l3d0" points="-566.36,117.55 -564.56,117.55 -564.56,119.35 -566.36,119.35 -567.26,118.45"/>
+<polygon id="0x5641ce25e240" class="l3d0" points="-568.16,119.35 -569.96,119.35 -569.96,117.55 -568.16,117.55 -567.26,118.45"/>
+<polygon id="0x5641ce25e310" class="l1112d0" points="-574.96,112.55 -574.96,124.35 -559.56,124.35 -559.56,112.55"/>
+<text id="0x5641ce25c120" class="l1113t0" text-anchor="middle" dominant-baseline="central" transform="translate(-2.5 -2.5) scale(1 -1)">slab150.W.1</text>
+<text id="0x5641ce25c1b0" class="l1113t0" text-anchor="middle" dominant-baseline="central" transform="translate(-113.3 -2.45) scale(1 -1)">slab150.W.1</text>
+<text id="0x5641ce25c240" class="l1113t0" text-anchor="middle" dominant-baseline="central" transform="translate(108.4 -5.77) scale(1 -1)">slab150.W.1</text>
+<text id="0x5641ce25c2d0" class="l1113t0" text-anchor="middle" dominant-baseline="central" transform="translate(-226.43 -3.62) scale(1 -1)">slab150.W.1</text>
+<text id="0x5641ce25c360" class="l1113t0" text-anchor="middle" dominant-baseline="central" transform="translate(225.84 -5.18) scale(1 -1)">slab150.W.1</text>
+<text id="0x5641ce25c3f0" class="l1113t0" text-anchor="middle" dominant-baseline="central" transform="translate(-338.55 -2.71) scale(1 -1)">slab150.W.1</text>
+<text id="0x5641ce25c480" class="l1113t0" text-anchor="middle" dominant-baseline="central" transform="translate(345.89 -6.25) scale(1 -1)">slab150.W.1</text>
+<text id="0x5641ce25c510" class="l1113t0" text-anchor="middle" dominant-baseline="central" transform="translate(-452.08 -3.82) scale(1 -1)">slab150.W.1</text>
+<text id="0x5641ce25c5f0" class="l1113t0" text-anchor="middle" dominant-baseline="central" transform="translate(464.29 -2.95) scale(1 -1)">slab150.W.1</text>
+<text id="0x5641ce25c680" class="l1113t0" text-anchor="middle" dominant-baseline="central" transform="translate(-565.62 -3.82) scale(1 -1)">slab150.W.1</text>
+<text id="0x5641ce25c770" class="l1113t0" text-anchor="middle" dominant-baseline="central" transform="translate(-681.02 -2.95) scale(1 -1)">slab150.W.1</text>
+<text id="0x5641ce25ce00" class="l1113t0" text-anchor="middle" dominant-baseline="central" transform="translate(-52.24 229.75) scale(1 -1)">slab150.A.1</text>
+<text id="0x5641ce25ce90" class="l1113t0" text-anchor="middle" dominant-baseline="central" transform="translate(-163.19 229.98) scale(1 -1)">slab150.A.1</text>
+<text id="0x5641ce18c700" class="l1113t0" text-anchor="middle" dominant-baseline="central" transform="translate(0.84 115.05) scale(1 -1)">slab150.S.1</text>
+<text id="0x5641ce25e590" class="l1113t0" text-anchor="middle" dominant-baseline="central" transform="translate(-112.66 115.05) scale(1 -1)">slab150.S.1</text>
+<text id="0x5641ce25e620" class="l1113t0" text-anchor="middle" dominant-baseline="central" transform="translate(114.44 112.15) scale(1 -1)">slab150.S.1</text>
+<text id="0x5641ce25e6b0" class="l1113t0" text-anchor="middle" dominant-baseline="central" transform="translate(-227.46 114.35) scale(1 -1)">slab150.S.1</text>
+<text id="0x5641ce25e740" class="l1113t0" text-anchor="middle" dominant-baseline="central" transform="translate(235.84 115.05) scale(1 -1)">slab150.S.1</text>
+<text id="0x5641ce25e7d0" class="l1113t0" text-anchor="middle" dominant-baseline="central" transform="translate(-342.26 114.35) scale(1 -1)">slab150.S.1</text>
+<text id="0x5641ce25e860" class="l1113t0" text-anchor="middle" dominant-baseline="central" transform="translate(352.14 115.05) scale(1 -1)">slab150.S.1</text>
+<text id="0x5641ce25e8f0" class="l1113t0" text-anchor="middle" dominant-baseline="central" transform="translate(-457.06 114.35) scale(1 -1)">slab150.S.1</text>
+<text id="0x5641ce25e980" class="l1113t0" text-anchor="middle" dominant-baseline="central" transform="translate(-572.46 115.05) scale(1 -1)">slab150.S.1</text>
+</g>
+</svg>

@@ -31,10 +31,10 @@ mh_w_1_l1  = mh_layer.width(0.7.um, euclidian)
 mh_w_1_l1.output("mh.w.1", "mh.w.1 : MH minimum width : 0.7µm.")
 mh_w_1_l1.forget 
 
-# Rule mh.s.1: MH minimum space is 1.0µm.
+# Rule mh.s.1: MH minimum space is 1µm.
 logger.info("Executing rule mh.s.1")
-mh_s_1_l1  = mh_layer.space(1.0.um, euclidian)
-mh_s_1_l1.output("mh.s.1", "mh.s.1 : MH minimum space : 1.0µm.")
+mh_s_1_l1  = mh_layer.space(1.um, euclidian)
+mh_s_1_l1.output("mh.s.1", "mh.s.1 : MH minimum space : 1µm.")
 mh_s_1_l1.forget 
 
 # Rule mh.A.1: MH minimum area is 0.5µm².

@@ -37,10 +37,10 @@ wg_s_1_l1  = wg_layer.space(0.2.um, euclidian)
 wg_s_1_l1.output("wg.s.1", "wg.s.1 : wg minimum space : 0.2µm.")
 wg_s_1_l1.forget 
 
-# Rule wg.a.1: wg minimum area is 1.0µm².
+# Rule wg.a.1: wg minimum area is 1µm².
 logger.info("Executing rule wg.a.1")
-wg_a_1_l1  = wg_layer.with_area(nil, 1.0.um)
-wg_a_1_l1.output("wg.a.1", "wg.a.1 : wg minimum area : 1.0µm².")
+wg_a_1_l1  = wg_layer.with_area(nil, 1.um)
+wg_a_1_l1.output("wg.a.1", "wg.a.1 : wg minimum area : 1µm².")
 wg_a_1_l1.forget 
 
 # Rule wg.a.2: wg minimum enclosed area is 0.5µm².
@@ -49,15 +49,15 @@ wg_a_2_l1  = wg_layer.holes.with_area(nil, 0.5.um)
 wg_a_2_l1.output("wg.a.2", "wg.a.2 : wg minimum enclosed area : 0.5µm².")
 wg_a_2_l1.forget 
 
-# Rule wg.a.2: wg minimum space to WGN is 0.2µm.
-logger.info("Executing rule wg.a.2")
-wg_a_2_l1  = wg_layer.separation(wgn_layer, 0.2.um, euclidian)
-wg_a_2_l1.output("wg.a.2", "wg.a.2 : wg minimum space to WGN : 0.2µm.")
-wg_a_2_l1.forget 
+# Rule wg.s.wgn.1: wg minimum space to WGN is 0.2µm.
+logger.info("Executing rule wg.s.wgn.1")
+wg_s_wgn_1_l1  = wg_layer.separation(wgn_layer, 0.2.um, euclidian)
+wg_s_wgn_1_l1.output("wg.s.wgn.1", "wg.s.wgn.1 : wg minimum space to WGN : 0.2µm.")
+wg_s_wgn_1_l1.forget 
 
-# Rule wg.a.2: Angles between 85 and 135° are not allowed on edges of the WG layer.
-logger.info("Executing rule wg.a.2")
-wg_a_2_l1  = wg_layer.corners(85..135,as_edge_pairs)
-wg_a_2_l1.output("wg.a.2", "wg.a.2 : Angles between 85 and 135° are not allowed on edges of the WG layer.")
-wg_a_2_l1.forget 
+# Rule wg.an.1: Angles between 85 and 135° are not allowed on edges of the WG layer.
+logger.info("Executing rule wg.an.1")
+wg_an_1_l1  = wg_layer.corners(85..135,as_edge_pairs)
+wg_an_1_l1.output("wg.an.1", "wg.an.1 : Angles between 85 and 135° are not allowed on edges of the WG layer.")
+wg_an_1_l1.forget 
 
