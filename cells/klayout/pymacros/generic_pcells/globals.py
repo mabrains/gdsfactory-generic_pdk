@@ -21,30 +21,39 @@
 # SPDX-License-Identifier: GPL-3.0
 # ========================================================================
 
-# ============================================================================
-# --------------- Pcells Generators for Gdsfactory Generic PDK ---------------
-# ============================================================================
-
 import pya
+from .gf_layers_def import LAYER
 
-from generic_pcells.klayout_pcells import pcell_generator
-from generic_pcells.gf_components import pcell_methods
-
-
-# It's a Python class that inherits from the pya.Library class
-class generic_pdk(pya.Library):
-    """
-    The library where we will put the PCell into
-    """
-
-    def __init__(self):
-        # Set the description
-        self.description = "Generic PDK Pcells"
-
-        for pcell_name, _ in pcell_methods.items():
-            # Create the PCell declarations
-
-            self.layout().register_pcell(pcell_name, pcell_generator(pcell_name))
-
-        # Register us with the name "generic_pdk".
-        self.register("generic_pdk")
+# define global used variables
+klayout_types = {
+    float: pya.PCellDeclarationHelper.TypeDouble,
+    int: pya.PCellDeclarationHelper.TypeInt,
+    tuple: pya.PCellDeclarationHelper.TypeList,
+    str: pya.PCellDeclarationHelper.TypeString,
+    bool: pya.PCellDeclarationHelper.TypeBoolean,
+    "float": pya.PCellDeclarationHelper.TypeDouble,
+    "int": pya.PCellDeclarationHelper.TypeInt,
+    "tuple": pya.PCellDeclarationHelper.TypeList,
+    "str": pya.PCellDeclarationHelper.TypeString,
+    "bool": pya.PCellDeclarationHelper.TypeBoolean,
+    "component": pya.PCellDeclarationHelper.TypeCallback,
+}
+layers = LAYER.keys()  # layers list
+not_lay = [
+    "layers",
+    "bbox_layers",
+    "layer_label",
+]  # parameter with layer string but not layer parameter
+port_types = ["electrical", "optical"]  # ports types list
+params_with_kwargs = ["component", "cross_section"]
+tuples_list_params = ["bbox", "sizes", "offsets", "layer_label"]
+basic_shapes_componenets = [
+    "C",
+    "L",
+    "rectangle",
+    "triangle",
+    "circle",
+    "hline",
+    "bbox",
+    "cross",
+]
