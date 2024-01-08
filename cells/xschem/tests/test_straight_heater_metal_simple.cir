@@ -1,0 +1,38 @@
+** test_straight_heater_metal_simple circuit for GenericPDK
+* ========================================================================
+* SPDX-FileCopyrightText: 2023 Mabrains Company
+* Licensed under the GNU GENERAL PUBLIC License, Version 3.0 (the "License");
+* you may not use this file except in compliance with the License.
+*
+*                    GNU GENERAL PUBLIC LICENSE
+*                       Version 3, 29 June 2007
+*
+* This program is free software: you can redistribute it and/or modify
+* it under the terms of the GNU General Public License as published
+* by the Free Software Foundation, either 3 of the License, or
+* (at your option) any later version.
+* 
+* This program is distributed in the hope that it will be useful,
+* but WITHOUT ANY WARRANTY; without even the implied warranty of
+* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+* GNU General Public License for more details.
+* 
+* You should have received a copy of the GNU General Public License
+* along with this program.  If not, see <https://www.gnu.org/licenses/>.
+* SPDX-License-Identifier: GPL-3.0
+* ========================================================================
+
+.subckt test_straight_heater_metal_simple pin1 pin2 hp_pin hn_pin
+*.PININFO pin1:B pin2:B hp_pin:B hn_pin:B
+Pheater1 hn_pin hp_pin pin1 net2 straight_heater_metal_simple length=320.0
++ length_undercut_spacing=6.0 length_undercut=30.0 heater_taper_length=5.0
+Pheater2 hn_pin hp_pin net2 net3 straight_heater_metal_simple length=320.0
++ length_undercut_spacing=6.0 length_undercut=30.0 heater_taper_length=5.0
+Pheater3 hn_pin hp_pin net3 net4 straight_heater_metal_simple length=320.0
++ length_undercut_spacing=6.0 length_undercut=30.0 heater_taper_length=5.0
+Pheater4 hp_pin hn_pin net1 net4 straight_heater_metal_simple length=320.0
++ length_undercut_spacing=6.0 length_undercut=30.0 heater_taper_length=5.0
+Pheater5 hn_pin hp_pin net1 pin2 straight_heater_metal_simple length=320.0
++ length_undercut_spacing=6.0 length_undercut=30.0 heater_taper_length=5.0
+.ends
+.end

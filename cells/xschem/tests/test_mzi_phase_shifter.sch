@@ -29,80 +29,59 @@ K {}
 V {}
 S {}
 E {}
-N 1060 -610 1060 -530 {
-lab=pin1}
-N 1000 -610 1060 -610 {
-lab=pin1}
-N 770 -370 770 -170 {
-lab=#net1}
-N 770 -170 1020 -170 {
-lab=#net1}
-N 1330 -380 1330 -170 {
-lab=#net2}
-N 1100 -170 1330 -170 {
-lab=#net2}
-N 330 -330 410 -330 {
-lab=#net3}
-N 370 -860 370 -830 {
+N 0 -635 30 -635 {
 lab=pin2}
-N 1690 -490 1690 -420 {
-lab=#net4}
-N 1770 -490 1770 -340 {
-lab=#net5}
-N 1690 -340 1770 -340 {
-lab=#net5}
-N 410 -470 410 -410 {
-lab=#net6}
-N 330 -470 330 -330 {
+N 403.75 -635 403.75 -372.5 {
+lab=#net1}
+N 941.25 -837.5 1001.25 -837.5 {
+lab=pin1}
+N 1001.25 -465 1001.25 -372.5 {
+lab=#net2}
+N 1625 -635 1625 -372.5 {
 lab=#net3}
-N 1730 -890 1730 -850 {
+N 1625 -638.75 1675 -638.75 {
+lab=#net3}
+N 1625 -638.75 1625 -635 {
+lab=#net3}
+N 2028.75 -638.75 2083.75 -638.75 {
 lab=pin3}
+N 383.75 -635 403.75 -635 {
+lab=#net1}
+N 1001.25 -837.5 1001.25 -817.5 {
+lab=pin1}
+N 757.5 -372.5 1271.25 -372.5 {
+lab=#net2}
 C {devices/title.sym} 160 -30 0 0 {name=l5 author="Generic PDK Authors"}
-C {../symbols/mmi1x2.sym} 890 30 0 0 {name=mmi4
-width_mmi=2.5
-length_mmi=5.5
-gap_mmi=0.25
-width=0.5
-width_taper=1
-length_taper=10
-model=mmi1x2
+C {devices/iopin.sym} 0 -635 2 0 {name=p4 lab=pin2}
+C {devices/iopin.sym} 951.25 -837.5 2 0 {name=p1 lab=pin1}
+C {devices/iopin.sym} 2083.75 -638.75 0 0 {name=p3 lab=pin3}
+C {symbols/mzi_phase_shifter.sym} 116.25 -642.5 0 0 {name=mzi1
+delta_length=10.0
+length_x=0.1
+length_y=2.0
+model=mzi_phase_shifter
 spiceprefix=P}
-C {devices/iopin.sym} 1010 -610 2 0 {name=p1 lab=pin1}
-C {devices/iopin.sym} 1730 -880 3 0 {name=p3 lab=pin3}
-C {../symbols/mmi1x2.sym} 1890 -210 3 0 {name=mmi1
-width_mmi=2.5
-length_mmi=5.5
-gap_mmi=0.25
-width=0.5
-width_taper=1
-length_taper=10
-model=mmi1x2
+C {symbols/mzi_phase_shifter.sym} 490 -380 0 0 {name=mzi2
+delta_length=10.0
+length_x=0.1
+length_y=2.0
+model=mzi_phase_shifter
 spiceprefix=P}
-C {../symbols/mmi1x2.sym} 210 -540 1 0 {name=mmi2
-width_mmi=2.5
-length_mmi=5.5
-gap_mmi=0.25
-width=0.5
-width_taper=1
-length_taper=10
-model=mmi1x2
+C {symbols/mzi_phase_shifter.sym} 1008.75 -732.5 1 0 {name=mzi3
+delta_length=10.0
+length_x=0.1
+length_y=2.0
+model=mzi_phase_shifter
 spiceprefix=P}
-C {../symbols/mmi1x2.sym} 200 -270 0 0 {name=mmi5
-width_mmi=2.5
-length_mmi=5.5
-gap_mmi=0.25
-width=0.5
-width_taper=1
-length_taper=10
-model=mmi1x2
+C {symbols/mzi_phase_shifter.sym} 1357.5 -380 0 0 {name=mzi4
+delta_length=10.0
+length_x=0.1
+length_y=2.0
+model=mzi_phase_shifter
 spiceprefix=P}
-C {devices/iopin.sym} 370 -850 3 0 {name=p4 lab=pin2}
-C {../symbols/mmi1x2.sym} 1560 -290 0 0 {name=mmi3
-width_mmi=2.5
-length_mmi=5.5
-gap_mmi=0.25
-width=0.5
-width_taper=1
-length_taper=10
-model=mmi1x2
+C {symbols/mzi_phase_shifter.sym} 1761.25 -646.25 0 0 {name=mzi5
+delta_length=10.0
+length_x=0.1
+length_y=2.0
+model=mzi_phase_shifter
 spiceprefix=P}

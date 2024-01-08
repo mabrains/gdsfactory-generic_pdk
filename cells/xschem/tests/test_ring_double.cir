@@ -1,0 +1,33 @@
+** test_mzi2x2_2x2_phase_shifter circuit for GenericPDK
+* ========================================================================
+* SPDX-FileCopyrightText: 2023 Mabrains Company
+* Licensed under the GNU GENERAL PUBLIC License, Version 3.0 (the "License");
+* you may not use this file except in compliance with the License.
+*
+*                    GNU GENERAL PUBLIC LICENSE
+*                       Version 3, 29 June 2007
+*
+* This program is free software: you can redistribute it and/or modify
+* it under the terms of the GNU General Public License as published
+* by the Free Software Foundation, either 3 of the License, or
+* (at your option) any later version.
+* 
+* This program is distributed in the hope that it will be useful,
+* but WITHOUT ANY WARRANTY; without even the implied warranty of
+* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+* GNU General Public License for more details.
+* 
+* You should have received a copy of the GNU General Public License
+* along with this program.  If not, see <https://www.gnu.org/licenses/>.
+* SPDX-License-Identifier: GPL-3.0
+* ========================================================================
+
+.subckt test_ring_double pin1 pin2 pin3 pin4
+*.PININFO pin1:B pin2:B pin3:B pin4:B
+Pring1 pin2 pin1 net1 net2 ring_double gap=0.2 radius=10.0 length_x=0.01 length_y=0.01
+Pring2 net2 net1 net3 net4 ring_double gap=0.2 radius=10.0 length_x=0.01 length_y=0.01
+Pring3 net4 net3 net5 net6 ring_double gap=0.2 radius=10.0 length_x=0.01 length_y=0.01
+Pring4 net8 net7 net6 net5 ring_double gap=0.2 radius=10.0 length_x=0.01 length_y=0.01
+Pring5 net7 net8 pin3 pin4 ring_double gap=0.2 radius=10.0 length_x=0.01 length_y=0.01
+.ends
+.end

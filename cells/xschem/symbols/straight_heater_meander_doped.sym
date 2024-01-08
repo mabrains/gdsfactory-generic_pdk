@@ -1,0 +1,72 @@
+v {xschem version=3.1.0 file_version=1.2 
+
+* ========================================================================
+* SPDX-FileCopyrightText: 2023 Mabrains Company
+* Licensed under the GNU GENERAL PUBLIC License, Version 3.0 (the "License");
+* you may not use this file except in compliance with the License.
+*
+*                    GNU GENERAL PUBLIC LICENSE
+*                       Version 3, 29 June 2007
+*
+* This program is free software: you can redistribute it and/or modify
+* it under the terms of the GNU General Public License as published
+* by the Free Software Foundation, either 3 of the License, or
+* (at your option) any later version.
+* 
+* This program is distributed in the hope that it will be useful,
+* but WITHOUT ANY WARRANTY; without even the implied warranty of
+* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+* GNU General Public License for more details.
+* 
+* You should have received a copy of the GNU General Public License
+* along with this program.  If not, see <https://www.gnu.org/licenses/>.
+* SPDX-License-Identifier: GPL-3.0
+* ========================================================================
+
+}
+G {}
+K {type=photonic
+format="@spiceprefix@name @pinlist @model length=@length spacing=@spacing heater_width=@heater_width extension_length=@extension_length radius=@radius taper_length=@taper_length"
+template="name=heater1
+length=300.0
+spacing=2.0
+heater_width=1.5
+extension_length=15.0
+radius=90
+taper_length=10.0
+model=straight_heater_meander_doped
+spiceprefix=P"
+}
+V {}
+S {}
+E {}
+L 4 200 -445 525 -445 {}
+L 4 525 -445 525 -410 {}
+L 4 200 -410 525 -410 {}
+L 4 200 -445 200 -410 {}
+L 4 165 -465 200 -445 {}
+L 4 165 -390 200 -410 {}
+L 4 165 -465 165 -390 {}
+L 4 130 -440 165 -440 {}
+L 4 525 -445 560 -465 {}
+L 4 525 -410 560 -390 {}
+L 4 560 -465 560 -390 {}
+L 4 560 -410 595 -410 {}
+L 4 570 -455 595 -455 {}
+L 4 130 -395 150 -395 {}
+B 4 210 -430 510 -420 {}
+B 4 500 -430 510 -390 {}
+B 4 210 -460 220 -420 {}
+B 4 150 -400 510 -390 {}
+B 4 210 -460 570 -450 {}
+B 5 127.5 -397.5 132.5 -392.5 {name=o1 dir=inout propag=1 pinnumber=2}
+B 5 127.5 -442.5 132.5 -437.5 {name=e1 dir=inout propag=1 pinnumber=2}
+B 5 592.5 -457.5 597.5 -452.5 {name=o2 dir=inout propag=1 pinnumber=2}
+B 5 592.5 -412.5 597.5 -407.5 {name=e2 dir=inout propag=1 pinnumber=2}
+T {o1} 127 -409 0 1 0.15 0.15 {layer=7}
+T {e1} 127 -454 0 1 0.15 0.15 {layer=7}
+T {o2} 597 -469 0 0 0.15 0.15 {layer=7}
+T {e2} 607 -429 0 1 0.15 0.15 {layer=7}
+T {@name} 245 -518.75 0 0 0.2 0.2 {}
+T {@length / @spacing} 245 -483.75 0 0 0.2 0.2 {layer=13}
+T {@model} 245 -501.25 0 0 0.2 0.2 {}
