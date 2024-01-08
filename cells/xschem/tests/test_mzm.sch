@@ -55,31 +55,31 @@ C {devices/title.sym} 160 -30 0 0 {name=l5 author="Generic PDK Authors"}
 C {devices/iopin.sym} 0 -635 2 0 {name=p4 lab=pin2}
 C {devices/iopin.sym} 951.25 -837.5 2 0 {name=p1 lab=pin1}
 C {devices/iopin.sym} 2083.75 -638.75 0 0 {name=p3 lab=pin3}
-C {symbols/mzm.sym} 117.5 -642.5 0 0 {name=mzm1
+C {../symbols/mzm.sym} 117.5 -642.5 0 0 {name=mzm1
 length_x=500
 length_y=2.0
 delta_length=0.0
 model=mzm
 spiceprefix=P}
-C {symbols/mzm.sym} 490 -380 0 0 {name=mzm2
+C {../symbols/mzm.sym} 490 -380 0 0 {name=mzm2
 length_x=500
 length_y=2.0
 delta_length=0.0
 model=mzm
 spiceprefix=P}
-C {symbols/mzm.sym} 1008.75 -731.25 1 0 {name=mzm3
+C {../symbols/mzm.sym} 1008.75 -731.25 1 0 {name=mzm3
 length_x=500
 length_y=2.0
 delta_length=0.0
 model=mzm
 spiceprefix=P}
-C {symbols/mzm.sym} 1357.5 -380 0 0 {name=mzm4
+C {../symbols/mzm.sym} 1357.5 -380 0 0 {name=mzm4
 length_x=500
 length_y=2.0
 delta_length=0.0
 model=mzm
 spiceprefix=P}
-C {symbols/mzm.sym} 1761.25 -646.25 0 0 {name=mzm5
+C {../symbols/mzm.sym} 1761.25 -646.25 0 0 {name=mzm5
 length_x=500
 length_y=2.0
 delta_length=0.0

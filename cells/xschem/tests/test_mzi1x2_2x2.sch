@@ -73,31 +73,31 @@ C {devices/title.sym} 160 -30 0 0 {name=l5 author="Generic PDK Authors"}
 C {devices/iopin.sym} 0 -635 2 0 {name=p4 lab=pin2}
 C {devices/iopin.sym} 951.25 -835 2 0 {name=p1 lab=pin1}
 C {devices/iopin.sym} 2023.75 -638.75 0 0 {name=p3 lab=pin3}
-C {symbols/mzi1x2_2x2.sym} 110 -642.5 0 0 {name=mzi1
+C {../symbols/mzi1x2_2x2.sym} 110 -642.5 0 0 {name=mzi1
 delta_length=10.0
 length_x=0.1
 length_y=2.0
 model=mzi1x2_2x2
 spiceprefix=P}
-C {symbols/mzi1x2_2x2.sym} 612.5 -380 0 1 {name=mzi2
+C {../symbols/mzi1x2_2x2.sym} 612.5 -380 0 1 {name=mzi2
 delta_length=10.0
 length_x=0.1
 length_y=2.0
 model=mzi1x2_2x2
 spiceprefix=P}
-C {symbols/mzi1x2_2x2.sym} 993.75 -670 3 1 {name=mzi3
+C {../symbols/mzi1x2_2x2.sym} 993.75 -670 3 1 {name=mzi3
 delta_length=10.0
 length_x=0.1
 length_y=2.0
 model=mzi1x2_2x2
 spiceprefix=P}
-C {symbols/mzi1x2_2x2.sym} 1421.25 -365 2 1 {name=mzi4
+C {../symbols/mzi1x2_2x2.sym} 1421.25 -365 2 1 {name=mzi4
 delta_length=10.0
 length_x=0.1
 length_y=2.0
 model=mzi1x2_2x2
 spiceprefix=P}
-C {symbols/mzi1x2_2x2.sym} 1882.5 -631.25 2 0 {name=mzi5
+C {../symbols/mzi1x2_2x2.sym} 1882.5 -631.25 2 0 {name=mzi5
 delta_length=10.0
 length_x=0.1
 length_y=2.0

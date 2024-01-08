@@ -94,7 +94,7 @@ C {devices/lab_pin.sym} 511.25 341.25 0 0 {name=l8 sig_type=std_logic lab=hp_pin
 C {devices/lab_pin.sym} 1606.25 637.5 0 1 {name=l9 sig_type=std_logic lab=hp_pin}
 C {devices/lab_pin.sym} 2125 -236.25 2 0 {name=l10 sig_type=std_logic lab=hp_pin}
 C {devices/lab_pin.sym} 2825 -366.25 0 1 {name=l11 sig_type=std_logic lab=hp_pin}
-C {symbols/straight_heater_meander.sym} -330 40 0 0 {name=heater1
+C {../symbols/straight_heater_meander.sym} -330 40 0 0 {name=heater1
 length=300.0
 spacing=2.0
 heater_width=2.5
@@ -104,7 +104,7 @@ heater_taper_length=10.0
 taper_length=10.0
 model=straight_heater_meander
 spiceprefix=P}
-C {symbols/straight_heater_meander.sym} 101.25 -310 1 0 {name=heater2
+C {../symbols/straight_heater_meander.sym} 101.25 -310 1 0 {name=heater2
 length=300.0
 spacing=2.0
 heater_width=2.5
@@ -114,7 +114,7 @@ heater_taper_length=10.0
 taper_length=10.0
 model=straight_heater_meander
 spiceprefix=P}
-C {symbols/straight_heater_meander.sym} 955 1047.5 0 0 {name=heater3
+C {../symbols/straight_heater_meander.sym} 955 1047.5 0 0 {name=heater3
 length=300.0
 spacing=2.0
 heater_width=2.5
@@ -124,7 +124,7 @@ heater_taper_length=10.0
 taper_length=10.0
 model=straight_heater_meander
 spiceprefix=P}
-C {symbols/straight_heater_meander.sym} 1685 -310 1 0 {name=heater4
+C {../symbols/straight_heater_meander.sym} 1685 -310 1 0 {name=heater4
 length=300.0
 spacing=2.0
 heater_width=2.5
@@ -134,7 +134,7 @@ heater_taper_length=10.0
 taper_length=10.0
 model=straight_heater_meander
 spiceprefix=P}
-C {symbols/straight_heater_meander.sym} 2173.75 43.75 0 0 {name=heater5
+C {../symbols/straight_heater_meander.sym} 2173.75 43.75 0 0 {name=heater5
 length=300.0
 spacing=2.0
 heater_width=2.5

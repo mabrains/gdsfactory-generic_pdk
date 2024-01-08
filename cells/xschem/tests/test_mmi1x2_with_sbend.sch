@@ -77,18 +77,18 @@ C {devices/title.sym} 160 -30 0 0 {name=l5 author="Generic PDK Authors"}
 C {devices/iopin.sym} 1010 -480 2 0 {name=p1 lab=pin1}
 C {devices/iopin.sym} 1730 -880 3 0 {name=p3 lab=pin3}
 C {devices/iopin.sym} 370 -850 3 0 {name=p4 lab=pin2}
-C {symbols/mmi1x2_with_sbend.sym} 370 -790 1 0 {name=mmi1
+C {../symbols/mmi1x2_with_sbend.sym} 370 -790 1 0 {name=mmi1
 model=mmi1x2_with_sbend
 spiceprefix=P}
-C {symbols/mmi1x2_with_sbend.sym} 730 -370 2 0 {name=mmi2
+C {../symbols/mmi1x2_with_sbend.sym} 730 -370 2 0 {name=mmi2
 model=mmi1x2_with_sbend
 spiceprefix=P}
-C {symbols/mmi1x2_with_sbend.sym} 1060 -360 1 0 {name=mmi3
+C {../symbols/mmi1x2_with_sbend.sym} 1060 -360 1 0 {name=mmi3
 model=mmi1x2_with_sbend
 spiceprefix=P}
-C {symbols/mmi1x2_with_sbend.sym} 1370 -380 0 0 {name=mmi4
+C {../symbols/mmi1x2_with_sbend.sym} 1370 -380 0 0 {name=mmi4
 model=mmi1x2_with_sbend
 spiceprefix=P}
-C {symbols/mmi1x2_with_sbend.sym} 1730 -810 1 0 {name=mmi5
+C {../symbols/mmi1x2_with_sbend.sym} 1730 -810 1 0 {name=mmi5
 model=mmi1x2_with_sbend
 spiceprefix=P}

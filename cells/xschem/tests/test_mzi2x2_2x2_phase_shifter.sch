@@ -78,26 +78,26 @@ lab=pin4}
 C {devices/title.sym} 160 -30 0 0 {name=l5 author="Generic PDK Authors"}
 C {devices/iopin.sym} 23.75 -612.5 2 0 {name=p4 lab=pin2}
 C {devices/iopin.sym} 2083.75 -648.75 0 0 {name=p3 lab=pin3}
-C {symbols/mzi2x2_2x2_phase_shifter.sym} 140 -630 0 0 {name=mzi1
+C {../symbols/mzi2x2_2x2_phase_shifter.sym} 140 -630 0 0 {name=mzi1
 delta_length=10.0
 length_x=0.1
 length_y=2.0
 model=mzi2x2_2x2_phase_shifter
 spiceprefix=P}
 C {devices/iopin.sym} 23.75 -632.5 2 0 {name=p1 lab=pin1}
-C {symbols/mzi2x2_2x2_phase_shifter.sym} 637.5 -370 0 0 {name=mzi2
+C {../symbols/mzi2x2_2x2_phase_shifter.sym} 637.5 -370 0 0 {name=mzi2
 delta_length=10.0
 length_x=0.1
 length_y=2.0
 model=mzi2x2_2x2_phase_shifter
 spiceprefix=P}
-C {symbols/mzi2x2_2x2_phase_shifter.sym} 1291.25 -370 0 0 {name=mzi3
+C {../symbols/mzi2x2_2x2_phase_shifter.sym} 1291.25 -370 0 0 {name=mzi3
 delta_length=10.0
 length_x=0.1
 length_y=2.0
 model=mzi2x2_2x2_phase_shifter
 spiceprefix=P}
-C {symbols/mzi2x2_2x2_phase_shifter.sym} 1761.25 -646.25 0 0 {name=mzi4
+C {../symbols/mzi2x2_2x2_phase_shifter.sym} 1761.25 -646.25 0 0 {name=mzi4
 delta_length=10.0
 length_x=0.1
 length_y=2.0
