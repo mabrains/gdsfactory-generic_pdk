@@ -62,7 +62,7 @@ C {devices/iopin.sym} -300 -505 0 1 {name=p1 lab=pin1}
 C {devices/iopin.sym} -300 -445 0 1 {name=p2 lab=pin2}
 C {devices/iopin.sym} 1690 -505 1 1 {name=p3 lab=pin3}
 C {devices/iopin.sym} 1750 -505 1 1 {name=p4 lab=pin4}
-C {symbols/mmi_90degree_hybrid.sym} -70 -440 0 0 {name=mmi1
+C {../symbols/mmi_90degree_hybrid.sym} -70 -440 0 0 {name=mmi1
 width_mmi=2.5
 length_mmi=5.5
 gap_mmi=0.25
@@ -71,7 +71,7 @@ width_taper=1
 length_taper=10
 model=mmi1x2
 spiceprefix=P}
-C {symbols/mmi_90degree_hybrid.sym} 450 -90 3 0 {name=mmi2
+C {../symbols/mmi_90degree_hybrid.sym} 450 -90 3 0 {name=mmi2
 width_mmi=2.5
 length_mmi=5.5
 gap_mmi=0.25
@@ -80,7 +80,7 @@ width_taper=1
 length_taper=10
 model=mmi1x2
 spiceprefix=P}
-C {symbols/mmi_90degree_hybrid.sym} 955 135 0 0 {name=mmi3
+C {../symbols/mmi_90degree_hybrid.sym} 955 135 0 0 {name=mmi3
 width_mmi=2.5
 length_mmi=5.5
 gap_mmi=0.25
@@ -89,7 +89,7 @@ width_taper=1
 length_taper=10
 model=mmi1x2
 spiceprefix=P}
-C {symbols/mmi_90degree_hybrid.sym} 1685 -245 1 0 {name=mmi4
+C {../symbols/mmi_90degree_hybrid.sym} 1685 -245 1 0 {name=mmi4
 width_mmi=2.5
 length_mmi=5.5
 gap_mmi=0.25

@@ -70,35 +70,35 @@ C {devices/iopin.sym} -340 -635 0 1 {name=p1 lab=pin1}
 C {devices/iopin.sym} -340 -355 0 1 {name=p2 lab=pin2}
 C {devices/iopin.sym} 2630 -635 2 1 {name=p3 lab=pin3}
 C {devices/iopin.sym} 2630 -355 2 1 {name=p4 lab=pin4}
-C {symbols/ring_double.sym} -120 -120 0 0 {name=ring1
+C {../symbols/ring_double.sym} -120 -120 0 0 {name=ring1
 gap=0.2
 radius=10.0
 length_x=0.01
 length_y=0.01
 model=ring_double
 spiceprefix=P}
-C {symbols/ring_double.sym} 100 -275 1 0 {name=ring2
+C {../symbols/ring_double.sym} 100 -275 1 0 {name=ring2
 gap=0.2
 radius=10.0
 length_x=0.01
 length_y=0.01
 model=ring_double
 spiceprefix=P}
-C {symbols/ring_double.sym} 920 540 0 0 {name=ring3
+C {../symbols/ring_double.sym} 920 540 0 0 {name=ring3
 gap=0.2
 radius=10.0
 length_x=0.01
 length_y=0.01
 model=ring_double
 spiceprefix=P}
-C {symbols/ring_double.sym} 1255 -275 1 0 {name=ring4
+C {../symbols/ring_double.sym} 1255 -275 1 0 {name=ring4
 gap=0.2
 radius=10.0
 length_x=0.01
 length_y=0.01
 model=ring_double
 spiceprefix=P}
-C {symbols/ring_double.sym} 2160 -120 0 0 {name=ring5
+C {../symbols/ring_double.sym} 2160 -120 0 0 {name=ring5
 gap=0.2
 radius=10.0
 length_x=0.01

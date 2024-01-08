@@ -85,7 +85,7 @@ C {devices/lab_pin.sym} 506.25 346.25 0 0 {name=l8 sig_type=std_logic lab=hp_pin
 C {devices/lab_pin.sym} 1611.25 642.5 0 1 {name=l9 sig_type=std_logic lab=hp_pin}
 C {devices/lab_pin.sym} 2135 -236.25 2 0 {name=l10 sig_type=std_logic lab=hp_pin}
 C {devices/lab_pin.sym} 2830 -361.25 0 1 {name=l11 sig_type=std_logic lab=hp_pin}
-C {symbols/straight_heater_metal_undercut.sym} -330 40 0 0 {name=heater1
+C {../symbols/straight_heater_metal_undercut.sym} -330 40 0 0 {name=heater1
 length=320.0
 length_undercut_spacing=6.0
 length_undercut=30.0
@@ -93,7 +93,7 @@ length_straight_input=15.0
 heater_taper_length=5.0
 model=straight_heater_metal_undercut
 spiceprefix=P}
-C {symbols/straight_heater_metal_undercut.sym} 101.25 -310 1 0 {name=heater2
+C {../symbols/straight_heater_metal_undercut.sym} 101.25 -310 1 0 {name=heater2
 length=320.0
 length_undercut_spacing=6.0
 length_undercut=30.0
@@ -101,7 +101,7 @@ length_straight_input=15.0
 heater_taper_length=5.0
 model=straight_heater_metal_undercut
 spiceprefix=P}
-C {symbols/straight_heater_metal_undercut.sym} 955 1047.5 0 0 {name=heater3
+C {../symbols/straight_heater_metal_undercut.sym} 955 1047.5 0 0 {name=heater3
 length=320.0
 length_undercut_spacing=6.0
 length_undercut=30.0
@@ -109,7 +109,7 @@ length_straight_input=15.0
 heater_taper_length=5.0
 model=straight_heater_metal_undercut
 spiceprefix=P}
-C {symbols/straight_heater_metal_undercut.sym} 1685 -310 1 0 {name=heater4
+C {../symbols/straight_heater_metal_undercut.sym} 1685 -310 1 0 {name=heater4
 length=320.0
 length_undercut_spacing=6.0
 length_undercut=30.0
@@ -117,7 +117,7 @@ length_straight_input=15.0
 heater_taper_length=5.0
 model=straight_heater_metal_undercut
 spiceprefix=P}
-C {symbols/straight_heater_metal_undercut.sym} 2173.75 43.75 0 0 {name=heater5
+C {../symbols/straight_heater_metal_undercut.sym} 2173.75 43.75 0 0 {name=heater5
 length=320.0
 length_undercut_spacing=6.0
 length_undercut=30.0

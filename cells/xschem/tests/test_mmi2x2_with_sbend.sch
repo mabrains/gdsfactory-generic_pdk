@@ -60,15 +60,15 @@ C {devices/iopin.sym} -290 -500 0 1 {name=p1 lab=pin1}
 C {devices/iopin.sym} -290 -460 0 1 {name=p2 lab=pin2}
 C {devices/iopin.sym} 1610 -420 1 1 {name=p3 lab=pin3}
 C {devices/iopin.sym} 1770 -420 1 1 {name=p4 lab=pin4}
-C {symbols/mmi2x2_with_sbend.sym} -110 -500 0 0 {name=mmi1
+C {../symbols/mmi2x2_with_sbend.sym} -110 -500 0 0 {name=mmi1
 model=mmi2x2_with_sbend
 spiceprefix=P}
-C {symbols/mmi2x2_with_sbend.sym} 460 -240 1 0 {name=mmi2
+C {../symbols/mmi2x2_with_sbend.sym} 460 -240 1 0 {name=mmi2
 model=mmi2x2_with_sbend
 spiceprefix=P}
-C {symbols/mmi2x2_with_sbend.sym} 960 110 0 0 {name=mmi3
+C {../symbols/mmi2x2_with_sbend.sym} 960 110 0 0 {name=mmi3
 model=mmi2x2_with_sbend
 spiceprefix=P}
-C {symbols/mmi2x2_with_sbend.sym} 1670 -60 3 0 {name=mmi4
+C {../symbols/mmi2x2_with_sbend.sym} 1670 -60 3 0 {name=mmi4
 model=mmi2x2_with_sbend
 spiceprefix=P}

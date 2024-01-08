@@ -55,31 +55,31 @@ C {devices/title.sym} 160 -30 0 0 {name=l5 author="Generic PDK Authors"}
 C {devices/iopin.sym} 0 -635 2 0 {name=p4 lab=pin2}
 C {devices/iopin.sym} 951.25 -837.5 2 0 {name=p1 lab=pin1}
 C {devices/iopin.sym} 2083.75 -638.75 0 0 {name=p3 lab=pin3}
-C {symbols/mzi_phase_shifter.sym} 116.25 -642.5 0 0 {name=mzi1
+C {../symbols/mzi_phase_shifter.sym} 116.25 -642.5 0 0 {name=mzi1
 delta_length=10.0
 length_x=0.1
 length_y=2.0
 model=mzi_phase_shifter
 spiceprefix=P}
-C {symbols/mzi_phase_shifter.sym} 490 -380 0 0 {name=mzi2
+C {../symbols/mzi_phase_shifter.sym} 490 -380 0 0 {name=mzi2
 delta_length=10.0
 length_x=0.1
 length_y=2.0
 model=mzi_phase_shifter
 spiceprefix=P}
-C {symbols/mzi_phase_shifter.sym} 1008.75 -732.5 1 0 {name=mzi3
+C {../symbols/mzi_phase_shifter.sym} 1008.75 -732.5 1 0 {name=mzi3
 delta_length=10.0
 length_x=0.1
 length_y=2.0
 model=mzi_phase_shifter
 spiceprefix=P}
-C {symbols/mzi_phase_shifter.sym} 1357.5 -380 0 0 {name=mzi4
+C {../symbols/mzi_phase_shifter.sym} 1357.5 -380 0 0 {name=mzi4
 delta_length=10.0
 length_x=0.1
 length_y=2.0
 model=mzi_phase_shifter
 spiceprefix=P}
-C {symbols/mzi_phase_shifter.sym} 1761.25 -646.25 0 0 {name=mzi5
+C {../symbols/mzi_phase_shifter.sym} 1761.25 -646.25 0 0 {name=mzi5
 delta_length=10.0
 length_x=0.1
 length_y=2.0

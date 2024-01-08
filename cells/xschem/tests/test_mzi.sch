@@ -55,32 +55,32 @@ N 1968.75 -638.75 2023.75 -638.75 {
 lab=pin3}
 C {devices/title.sym} 160 -30 0 0 {name=l5 author="Generic PDK Authors"}
 C {devices/iopin.sym} 0 -635 2 0 {name=p4 lab=pin2}
-C {symbols/mzi.sym} 115 -642.5 0 0 {name=mzi1
+C {../symbols/mzi.sym} 115 -642.5 0 0 {name=mzi1
 delta_length=10.0
 langth_y=2.0
 length_x=0.1
 model=mzi
 spiceprefix=P}
-C {symbols/mzi.sym} 490 -380 0 0 {name=mzi2
+C {../symbols/mzi.sym} 490 -380 0 0 {name=mzi2
 delta_length=10.0
 langth_y=2.0
 length_x=0.1
 model=mzi
 spiceprefix=P}
 C {devices/iopin.sym} 951.25 -837.5 2 0 {name=p1 lab=pin1}
-C {symbols/mzi.sym} 1008.75 -672.5 1 0 {name=mzi3
+C {../symbols/mzi.sym} 1008.75 -672.5 1 0 {name=mzi3
 delta_length=10.0
 langth_y=2.0
 length_x=0.1
 model=mzi
 spiceprefix=P}
-C {symbols/mzi.sym} 1417.5 -380 0 0 {name=mzi4
+C {../symbols/mzi.sym} 1417.5 -380 0 0 {name=mzi4
 delta_length=10.0
 langth_y=2.0
 length_x=0.1
 model=mzi
 spiceprefix=P}
-C {symbols/mzi.sym} 1761.25 -646.25 0 0 {name=mzi5
+C {../symbols/mzi.sym} 1761.25 -646.25 0 0 {name=mzi5
 delta_length=10.0
 langth_y=2.0
 length_x=0.1
