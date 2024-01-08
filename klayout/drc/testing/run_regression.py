@@ -325,7 +325,7 @@ def run_test_case(
     if os.path.exists(sw_file):
         switches = " ".join(get_switches(sw_file, testcase_basename))
     else:
-        switches = "--variant=C"  # default switch
+        switches = ""  # default switch
 
     # Adding switches for specific runsets
     if "antenna" in str(layout_path):

@@ -1,6 +1,6 @@
 # ========================================================================
 # SPDX-FileCopyrightText: 2023 Mabrains Company
-# Licensed under the GNU GENERAL PUBLIC License, Version 3.0 (the "License");
+# Licensed under the GNU GENERAL PUBLIC License, Version 3.0 (the 'License');
 # you may not use this file except in compliance with the License.
 
 #                    GNU GENERAL PUBLIC LICENSE
@@ -26,32 +26,32 @@
 #================================================ 
 
 # Rule wgn.w.1: wgn minimum width is 0.3µm.
-logger.info("Executing rule wgn.w.1")
+logger.info('Executing rule wgn.w.1')
 wgn_w_1_l1  = wgn_layer.width(0.3.um, euclidian)
-wgn_w_1_l1.output("wgn.w.1", "wgn.w.1 : wgn minimum width : 0.3µm.")
+wgn_w_1_l1.output('wgn.w.1', 'wgn.w.1 : wgn minimum width : 0.3µm.')
 wgn_w_1_l1.forget 
 
 # Rule wgn.s.1: wgn minimum space is 0.3µm.
-logger.info("Executing rule wgn.s.1")
+logger.info('Executing rule wgn.s.1')
 wgn_s_1_l1  = wgn_layer.space(0.3.um, euclidian)
-wgn_s_1_l1.output("wgn.s.1", "wgn.s.1 : wgn minimum space : 0.3µm.")
+wgn_s_1_l1.output('wgn.s.1', 'wgn.s.1 : wgn minimum space : 0.3µm.')
 wgn_s_1_l1.forget 
 
 # Rule wgn.a.1: wgn minimum area is 1.5µm².
-logger.info("Executing rule wgn.a.1")
+logger.info('Executing rule wgn.a.1')
 wgn_a_1_l1  = wgn_layer.with_area(nil, 1.5.um)
-wgn_a_1_l1.output("wgn.a.1", "wgn.a.1 : wgn minimum area : 1.5µm².")
+wgn_a_1_l1.output('wgn.a.1', 'wgn.a.1 : wgn minimum area : 1.5µm².')
 wgn_a_1_l1.forget 
 
 # Rule wgn.a.2: wg minimum enclosed area is 0.7µm².
-logger.info("Executing rule wgn.a.2")
+logger.info('Executing rule wgn.a.2')
 wgn_a_2_l1  = wgn_layer.holes.with_area(nil, 0.7.um)
-wgn_a_2_l1.output("wgn.a.2", "wgn.a.2 : wg minimum enclosed area : 0.7µm².")
+wgn_a_2_l1.output('wgn.a.2', 'wgn.a.2 : wg minimum enclosed area : 0.7µm².')
 wgn_a_2_l1.forget 
 
 # Rule wgn.an.1: Angles between 85 and 135° are not allowed on edges of the WGN layer.
-logger.info("Executing rule wgn.an.1")
+logger.info('Executing rule wgn.an.1')
 wgn_an_1_l1  = wgn_layer.corners(85..135,as_edge_pairs)
-wgn_an_1_l1.output("wgn.an.1", "wgn.an.1 : Angles between 85 and 135° are not allowed on edges of the WGN layer.")
+wgn_an_1_l1.output('wgn.an.1', 'wgn.an.1 : Angles between 85 and 135° are not allowed on edges of the WGN layer.')
 wgn_an_1_l1.forget 
 

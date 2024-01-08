@@ -1,6 +1,6 @@
 # ========================================================================
 # SPDX-FileCopyrightText: 2023 Mabrains Company
-# Licensed under the GNU GENERAL PUBLIC License, Version 3.0 (the "License");
+# Licensed under the GNU GENERAL PUBLIC License, Version 3.0 (the 'License');
 # you may not use this file except in compliance with the License.
 
 #                    GNU GENERAL PUBLIC LICENSE
@@ -26,20 +26,20 @@
 #================================================ 
 
 # Rule slab90.w.1: slab90 minimum width is 0.09µm.
-logger.info("Executing rule slab90.w.1")
+logger.info('Executing rule slab90.w.1')
 slab90_w_1_l1  = slab90_layer.width(0.09.um, euclidian)
-slab90_w_1_l1.output("slab90.w.1", "slab90.w.1 : slab90 minimum width : 0.09µm.")
+slab90_w_1_l1.output('slab90.w.1', 'slab90.w.1 : slab90 minimum width : 0.09µm.')
 slab90_w_1_l1.forget 
 
 # Rule slab90.s.1: slab90 minimum space is 0.09µm.
-logger.info("Executing rule slab90.s.1")
+logger.info('Executing rule slab90.s.1')
 slab90_s_1_l1  = slab90_layer.space(0.09.um, euclidian)
-slab90_s_1_l1.output("slab90.s.1", "slab90.s.1 : slab90 minimum space : 0.09µm.")
+slab90_s_1_l1.output('slab90.s.1', 'slab90.s.1 : slab90 minimum space : 0.09µm.')
 slab90_s_1_l1.forget 
 
 # Rule slab90.a.1: slab90 minimum area is 0.01µm².
-logger.info("Executing rule slab90.a.1")
+logger.info('Executing rule slab90.a.1')
 slab90_a_1_l1  = slab90_layer.with_area(nil, 0.01.um)
-slab90_a_1_l1.output("slab90.a.1", "slab90.a.1 : slab90 minimum area : 0.01µm².")
+slab90_a_1_l1.output('slab90.a.1', 'slab90.a.1 : slab90 minimum area : 0.01µm².')
 slab90_a_1_l1.forget 
 

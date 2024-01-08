@@ -1,6 +1,6 @@
 # ========================================================================
 # SPDX-FileCopyrightText: 2023 Mabrains Company
-# Licensed under the GNU GENERAL PUBLIC License, Version 3.0 (the "License");
+# Licensed under the GNU GENERAL PUBLIC License, Version 3.0 (the 'License');
 # you may not use this file except in compliance with the License.
 
 #                    GNU GENERAL PUBLIC LICENSE
@@ -23,5 +23,5 @@
 
 exec_end_time = Time.now
 run_time = exec_end_time - exec_start_time
-logger.info("#{$table_name} DRC Total Run time #{run_time} seconds")
+logger.info('#{$table_name} DRC Total Run time #{run_time} seconds')
 

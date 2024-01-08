@@ -166,3 +166,6 @@ cython_debug/
 run_*_regr/
 pcells_run_*/
 gen_scripts/
+unit_tests_*/
+drc_run_*/
+lvs_run_*/

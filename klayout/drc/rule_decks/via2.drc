@@ -1,6 +1,6 @@
 # ========================================================================
 # SPDX-FileCopyrightText: 2023 Mabrains Company
-# Licensed under the GNU GENERAL PUBLIC License, Version 3.0 (the "License");
+# Licensed under the GNU GENERAL PUBLIC License, Version 3.0 (the 'License');
 # you may not use this file except in compliance with the License.
 
 #                    GNU GENERAL PUBLIC LICENSE
@@ -26,33 +26,33 @@
 #================================================ 
 
 # Rule via2.w.1: min/max via2 size is 0.7µm.
-logger.info("Executing rule via2.w.1")
+logger.info('Executing rule via2.w.1')
 via2_w_1_l1 = via2_layer.edges.without_length(0.7.um)
-via2_w_1_l1.output("via2.w.1", "via2.w.1 : min/max via2 size : 0.7µm.")
+via2_w_1_l1.output('via2.w.1', 'via2.w.1 : min/max via2 size : 0.7µm.')
 via2_w_1_l1.forget
 
 # Rule via2.s.1: via2 minimum space is 0.7µm.
-logger.info("Executing rule via2.s.1")
+logger.info('Executing rule via2.s.1')
 via2_s_1_l1  = via2_layer.space(0.7.um, euclidian)
-via2_s_1_l1.output("via2.s.1", "via2.s.1 : via2 minimum space : 0.7µm.")
+via2_s_1_l1.output('via2.s.1', 'via2.s.1 : via2 minimum space : 0.7µm.')
 via2_s_1_l1.forget 
 
 # Rule via2.en.1: m2 minimum overlap of via2 is 0.2µm.
-logger.info("Executing rule via2.en.1")
+logger.info('Executing rule via2.en.1')
 via2_en_1_l1 = via2_layer.enclosed(m2_layer, 0.2.um, euclidian).polygons(0.001.um)
 via2_en_1_l2 = via2_layer.not_outside(m2_layer).not(m2_layer)
 via2_en_1_l  = via2_en_1_l1.join(via2_en_1_l2)
-via2_en_1_l.output("via2.en.1", "via2.en.1 : m2 minimum overlap of via2 : 0.2µm.")
+via2_en_1_l.output('via2.en.1', 'via2.en.1 : m2 minimum overlap of via2 : 0.2µm.')
 via2_en_1_l1.forget
 via2_en_1_l2.forget
 via2_en_1_l.forget
 
 # Rule via2.en.2: m3 minimum overlap of via2 is 0.2µm.
-logger.info("Executing rule via2.en.2")
+logger.info('Executing rule via2.en.2')
 via2_en_2_l1 = via2_layer.enclosed(m3_layer, 0.2.um, euclidian).polygons(0.001.um)
 via2_en_2_l2 = via2_layer.not_outside(m3_layer).not(m3_layer)
 via2_en_2_l  = via2_en_2_l1.join(via2_en_2_l2)
-via2_en_2_l.output("via2.en.2", "via2.en.2 : m3 minimum overlap of via2 : 0.2µm.")
+via2_en_2_l.output('via2.en.2', 'via2.en.2 : m3 minimum overlap of via2 : 0.2µm.')
 via2_en_2_l1.forget
 via2_en_2_l2.forget
 via2_en_2_l.forget
