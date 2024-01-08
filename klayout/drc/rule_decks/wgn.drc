@@ -49,9 +49,9 @@ wgn_a_2_l1  = wgn_layer.holes.with_area(nil, 0.7.um)
 wgn_a_2_l1.output('wgn.a.2', 'wgn.a.2 : wg minimum enclosed area : 0.7µm².')
 wgn_a_2_l1.forget 
 
-# Rule wgn.an.1: Angles between 85 and 135° are not allowed on edges of the WGN layer.
-logger.info('Executing rule wgn.an.1')
-wgn_an_1_l1  = wgn_layer.corners(85..135,as_edge_pairs)
-wgn_an_1_l1.output('wgn.an.1', 'wgn.an.1 : Angles between 85 and 135° are not allowed on edges of the WGN layer.')
-wgn_an_1_l1.forget 
+# Rule wgn.I.1: wg should not overlap wgn layer.
+logger.info('Executing rule wgn.I.1')
+wgn_i_1_l1 = wgn_layer.overlapping(wg_layer)
+wgn_i_1_l1.output('wgn.i.1', 'wgn.I.1 : wgn should not overlap wg layer.')
+wgn_i_1_l1.forget
 

@@ -40,7 +40,7 @@ mh_s_1_l1.forget
 # Rule mh.A.1: MH minimum area is 0.5µm².
 logger.info('Executing rule mh.A.1')
 mh_a_1_l1  = mh_layer.with_area(nil, 0.5.um)
-mh_a_1_l1.output('mh.A.1', 'mh.A.1 : MH minimum area : 0.5µm².')
+mh_a_1_l1.output('mh.a.1', 'mh.a.1 : MH minimum area : 0.5µm².')
 mh_a_1_l1.forget 
 
 # Rule mh.en.1: straight_heater_metal device should be covered by heater_mk (47/1) layer.

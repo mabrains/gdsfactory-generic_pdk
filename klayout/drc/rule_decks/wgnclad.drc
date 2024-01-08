@@ -34,7 +34,7 @@ wgnclad_w_1_l1.forget
 # Rule wgnclad.I.1: wgnclad should overlap wgn layer.
 logger.info('Executing rule wgnclad.I.1')
 wgnclad_i_1_l1 = wgn_clad_layer.not_overlapping(wgn_layer)
-wgnclad_i_1_l1.output('wgnclad.I.1', 'wgnclad.I.1 : wgnclad should overlap wgn layer.')
+wgnclad_i_1_l1.output('wgnclad.i.1', 'wgnclad.I.1 : wgnclad should overlap wgn layer.')
 wgnclad_i_1_l1.forget
 
 # Rule wgnclad.en.1: wgnclad minimum overlap of wgn layer is 0.1µm.

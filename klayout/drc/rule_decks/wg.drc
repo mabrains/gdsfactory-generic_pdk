@@ -55,9 +55,9 @@ wg_s_wgn_1_l1  = wg_layer.separation(wgn_layer, 0.2.um, euclidian)
 wg_s_wgn_1_l1.output('wg.s.wgn.1', 'wg.s.wgn.1 : wg minimum space to WGN : 0.2µm.')
 wg_s_wgn_1_l1.forget 
 
-# Rule wg.an.1: Angles between 85 and 135° are not allowed on edges of the WG layer.
-logger.info('Executing rule wg.an.1')
-wg_an_1_l1  = wg_layer.corners(85..135,as_edge_pairs)
-wg_an_1_l1.output('wg.an.1', 'wg.an.1 : Angles between 85 and 135° are not allowed on edges of the WG layer.')
-wg_an_1_l1.forget 
+# Rule wg.I.1: wg should not overlap wgn layer.
+logger.info('Executing rule wg.I.1')
+wg_i_1_l1 = wg_layer.overlapping(wgn_layer)
+wg_i_1_l1.output('wg.i.1', 'wg.I.1 : wg should not overlap wgn layer.')
+wg_i_1_l1.forget
 
